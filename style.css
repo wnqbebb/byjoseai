@@ -2955,3 +2955,86 @@ p, li, td, th, span:not(.eyebrow-text):not(.eyebrow-pill):not(.section-tag-bruta
 }
 
 
+
+/* ═══════════════════════════════════════════
+   MOBILE OVERRIDE — Inline grid fix + layout
+   ═══════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+
+    /* Colapsar todos los grids 2-col con inline style */
+    [style*="grid-template-columns: 1fr 1fr"],
+    [style*="grid-template-columns: repeat(2, 1fr)"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* El card full-width de fondo blanco tiene grid interno — forzar columna */
+    [style*="grid-column: 1 / -1"] {
+        grid-template-columns: 1fr !important;
+    }
+    [style*="grid-column: 1 / -1"] img {
+        min-height: auto !important;
+        max-height: 340px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    /* Imágenes que sobresalen */
+    img { max-width: 100%; height: auto; }
+
+    /* Hero image */
+    [style*="max-width: 520px"] {
+        max-width: 100% !important;
+    }
+
+    /* Checkout card padding */
+    [style*="padding: 60px"] {
+        padding: 32px 20px !important;
+    }
+    [style*="padding: 48px"] {
+        padding: 28px 20px !important;
+    }
+
+    /* Verdad questions padding */
+    [style*="padding: 40px; text-align: left"] {
+        padding: 24px 16px !important;
+    }
+
+    /* Precio grande — reducir en mobile */
+    [style*="font-size: 4.8rem"] {
+        font-size: 3.2rem !important;
+    }
+
+    /* Guide header */
+    .guide-header { padding: 0 0 40px !important; }
+
+    /* Guide container inner padding */
+    .guide-container {
+        padding: 24px 16px !important;
+    }
+
+    /* Títulos sección */
+    [style*="font-size: 3.5rem"] {
+        font-size: 2.4rem !important;
+    }
+    [style*="font-size: 2.8rem"] {
+        font-size: 1.9rem !important;
+    }
+    [style*="font-size: 2.2rem"] {
+        font-size: 1.5rem !important;
+    }
+
+    /* Overflow safety net */
+    section, .guide-section, .hero-section {
+        overflow-x: hidden;
+    }
+    .hero-container {
+        flex-direction: column !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .guide-container { padding: 16px 12px !important; }
+    [style*="padding: 60px"] { padding: 24px 16px !important; }
+    [style*="padding: 48px"] { padding: 20px 16px !important; }
+}
