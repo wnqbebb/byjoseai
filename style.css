@@ -3038,3 +3038,29 @@ p, li, td, th, span:not(.eyebrow-text):not(.eyebrow-pill):not(.section-tag-bruta
     [style*="padding: 60px"] { padding: 24px 16px !important; }
     [style*="padding: 48px"] { padding: 20px 16px !important; }
 }
+
+/* ═══════════════════════════════════════════
+   MOBILE GRID COLLAPSE — class-based (reliable)
+   ═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+    .mobile-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .mobile-grid-inner {
+        grid-template-columns: 1fr !important;
+    }
+    .mobile-grid-inner img {
+        min-height: auto !important;
+        max-height: 300px;
+        object-fit: cover;
+        width: 100%;
+    }
+    /* Prompt boxes: no overflow on any screen */
+    pre, code, [style*="white-space: pre"] {
+        white-space: pre-wrap !important;
+        overflow-wrap: break-word !important;
+        word-break: break-word !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+}
