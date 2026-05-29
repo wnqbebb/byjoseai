@@ -1,5 +1,10 @@
 .vercel
 node_modules
+.next
+out
 C:tmpvercel_projects.json
 fotos de la web/
 nombres de herramientas/
+.env
+.env.local
+.env*.local
