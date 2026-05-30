@@ -77,7 +77,7 @@ export default function Bonos() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="font-heading font-bold text-white text-center mb-4"
+          className="font-heading font-bold text-white text-center mb-4 glitch-hover"
           style={{ fontSize: 'clamp(28px, 4vw, 40px)', lineHeight: 1.2 }}
         >
           ADEMÁS DEL CURSO, HOY TE LLEVAS 7 BONOS QUE ACELERAN TU RESULTADO 🎁

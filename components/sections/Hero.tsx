@@ -74,7 +74,7 @@ export default function Hero() {
             {/* H1 */}
             <motion.h1
               {...fadeUp(0.2)}
-              className="text-h1 text-white mb-5"
+              className="text-h1 text-white mb-5 glitch-hover"
               style={{ fontFamily: 'var(--font-display)', fontWeight: 700 }}
             >
               CONSTRUYE EL SISTEMA QUE CONVIERTE TU CONTENIDO EN PREMIUM CON IA — Y A TI, EN EL CREADOR QUE LAS MARCAS QUIEREN PAGAR.
