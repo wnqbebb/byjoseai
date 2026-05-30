@@ -77,7 +77,7 @@ export default function Hero() {
               className="text-h1 text-white mb-5"
               style={{ fontFamily: 'var(--font-display)', fontWeight: 700 }}
             >
-              CONSTRUYE EL SISTEMA QUE CONVIERTE TU CONTENIDO EN PREMIUM CON IA — Y A TI, EN LA CREADORA QUE LAS MARCAS QUIEREN PAGAR.
+              CONSTRUYE EL SISTEMA QUE CONVIERTE TU CONTENIDO EN PREMIUM CON IA — Y A TI, EN EL CREADOR QUE LAS MARCAS QUIEREN PAGAR.
             </motion.h1>
 
             {/* Sub-headline */}
@@ -100,7 +100,7 @@ export default function Hero() {
               {[
                 'Sin mostrar tu cara si no quieres',
                 'Sin cámara ni equipo profesional',
-                'Sin ser técnica ni experta en IA',
+                'Sin ser técnico ni experto en IA',
               ].map((item, i) => (
                 <li
                   key={i}
@@ -130,7 +130,7 @@ export default function Hero() {
                 lineHeight: 1.6,
               }}
             >
-              Modo Creador es el sistema que enseña a creadoras como tú a producir contenido nivel marca grande con IA — y a cerrar tu primera colaboración paga con una marca en los próximos 30 días.
+              Modo Creador es el sistema que enseña a creadores como tú a producir contenido nivel marca grande con IA — y a cerrar tu primera colaboración paga con una marca en los próximos 30 días.
             </motion.p>
 
             {/* CTA */}

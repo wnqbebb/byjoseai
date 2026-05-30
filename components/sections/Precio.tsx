@@ -151,7 +151,7 @@ export default function Precio() {
             >
               <span>🟢</span>
               <span className="font-body font-medium text-white" style={{ fontSize: '16px' }}>
-                Primeras 50 fundadoras (alumnas) → <strong>$29 USD</strong>
+                Primeros 50 alumnos → <strong>$29 USD</strong>
               </span>
               <span
                 className="font-body font-bold animate-pulse-dot ml-auto"
@@ -168,7 +168,7 @@ export default function Precio() {
             >
               <span>🟡</span>
               <span className="font-body font-medium" style={{ color: 'var(--gray-400)', fontSize: '16px' }}>
-                Alumnas 51–300 → $59 USD
+                Alumnos 51–300 → $59 USD
               </span>
             </div>
 
@@ -179,7 +179,7 @@ export default function Precio() {
             >
               <span>🟠</span>
               <span className="font-body font-medium" style={{ color: 'var(--gray-400)', fontSize: '16px' }}>
-                Alumnas 301–1.000 → $97 USD
+                Alumnos 301–1.000 → $97 USD
               </span>
             </div>
           </div>

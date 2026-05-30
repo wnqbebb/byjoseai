@@ -7,14 +7,14 @@ const noItems = [
   'No te interesa construir marca personal real.',
   'Solo quieres más seguidores sin importar quiénes sean.',
   'Crees que la IA te va a hacer todo por sí sola.',
-  'No estás dispuesta a darle 3–5 horas por semana al sistema.',
+  'No estás dispuesto a darle 3–5 horas por semana al sistema.',
 ]
 
 const siItems = [
   'Tienes talento pero sientes que aún no destacas.',
   'Quieres que tu contenido se vea profesional desde la primera publicación.',
   'Quieres trabajar con marcas reales y cobrar como tal.',
-  'Estás lista para aprender IA como sistema — no como truco suelto.',
+  'Estás listo para aprender IA como sistema — no como truco suelto.',
   'Quieres trabajar desde casa con tu laptop o celular.',
   'Crees en construir algo real, paso a paso, sin atajos falsos.',
 ]

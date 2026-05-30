@@ -5,10 +5,10 @@ import { Check } from 'lucide-react'
 
 const items = [
   'Sabes que tienes talento pero no logras destacar',
-  'Tu contenido se ve "casero" comparado con creadoras grandes',
+  'Tu contenido se ve "casero" comparado con creadores grandes',
   'Quieres trabajar con marcas pero no sabes cómo empezar',
   'Ya probaste IA suelta y no funcionó porque te falta sistema',
-  'Estás cansada de ser invisible',
+  'Estás cansado de ser invisible',
   'Quieres monetizar en redes — pero hacerlo bien, no de cualquier forma',
 ]
 

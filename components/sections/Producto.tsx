@@ -61,10 +61,10 @@ export default function Producto() {
           className="max-w-[700px] mx-auto text-left"
         >
           <p className="font-body mb-5" style={{ color: 'var(--gray-400)', fontSize: 'clamp(16px, 2vw, 18px)', lineHeight: 1.6 }}>
-            Modo Creador no es un curso más de IA. Es la hoja de ruta exacta que aplico (y que enseño a mis clientes) para que creadoras sin experiencia técnica, sin equipo caro y sin años de carrera construyan contenido que parece de campaña — y empiecen a cobrar como tal.
+            Modo Creador no es un curso más de IA. Es la hoja de ruta exacta que aplico (y que enseño a mis clientes) para que creadores sin experiencia técnica, sin equipo caro y sin años de carrera construyan contenido que parece de campaña — y empiecen a cobrar como tal.
           </p>
           <p className="font-body" style={{ color: 'var(--gray-400)', fontSize: 'clamp(16px, 2vw, 18px)', lineHeight: 1.6 }}>
-            Aquí no aprendes &quot;trucos sueltos&quot;. Aprendes el **sistema** que las creadoras profesionales usan en silencio para verse premium y cobrar como marcas.
+            Aquí no aprendes &quot;trucos sueltos&quot;. Aprendes el **sistema** que los creadores profesionales usan en silencio para verse premium y cobrar como marcas.
           </p>
         </motion.div>
 

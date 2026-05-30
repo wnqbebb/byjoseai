@@ -35,7 +35,7 @@ const bonos = [
   },
   {
     title: 'Lista Marcas que Pagan + Scripts de Outreach (PDF + Notion)',
-    desc: 'La base de datos secreta con las marcas que YA están pagando creadoras que usan IA — con sus emails, briefs reales, tarifas de referencia + los scripts de outreach exactos que funcionan para cerrar tu primera colaboración.',
+    desc: 'La base de datos secreta con las marcas que YA están pagando creadores que usan IA — con sus emails, briefs reales, tarifas de referencia + los scripts de outreach exactos que funcionan para cerrar tu primera colaboración.',
     value: '$197 USD',
   },
   {

@@ -48,13 +48,13 @@ export default function Cierre() {
             className="font-body mb-3"
             style={{ color: 'var(--gray-400)', fontSize: 'clamp(18px, 2.5vw, 20px)', lineHeight: 1.6 }}
           >
-            Las creadoras que se metieron a Modo Creador → estarán cobrando su primera colaboración con una marca.
+            Los creadores que se metieron a Modo Creador → estarán cobrando su primera colaboración con una marca.
           </p>
           <p
             className="font-body"
             style={{ color: 'var(--gray-400)', fontSize: 'clamp(18px, 2.5vw, 20px)', lineHeight: 1.6 }}
           >
-            Las que siguieron &quot;esperando el momento&quot; → seguirán esperando.
+            Los que siguieron &quot;esperando el momento&quot; → seguirán esperando.
           </p>
         </motion.div>
 

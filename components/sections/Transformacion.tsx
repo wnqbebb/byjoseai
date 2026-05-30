@@ -10,7 +10,7 @@ const rows = [
   { before: 'Ninguna marca te escribe', after: 'Marcas reales te contactan o respondes outreach' },
   { before: 'Cero ingresos de redes', after: 'Primera colaboración paga en 30 días' },
   { before: 'Improvisas cada publicación', after: 'Tienes un sistema replicable que corre solo' },
-  { before: 'Te sientes invisible y atrasada', after: 'Te sientes profesional, segura, en control' },
+  { before: 'Te sientes invisible y atrasado', after: 'Te sientes profesional, seguro, en control' },
 ]
 
 const notifications = [

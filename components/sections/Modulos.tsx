@@ -20,7 +20,7 @@ const modulos = [
     num: '02',
     title: 'La Nueva Era del Creador',
     subtitle: 'Mentalidad + mercado saturado',
-    desc: 'Por qué la mayoría de creadoras fracasan persiguiendo "ir viral" y cómo destacar de verdad. Cambia el chip antes de tocar una sola herramienta.',
+    desc: 'Por qué la mayoría de creadores fracasan persiguiendo "ir viral" y cómo destacar de verdad. Cambia el chip antes de tocar una sola herramienta.',
   },
   {
     num: '03',
@@ -38,7 +38,7 @@ const modulos = [
     num: '05',
     title: 'Vida a tu Avatar',
     subtitle: 'Animación de personajes',
-    desc: 'Convierte fotos estáticas en personajes que hablan, se mueven y crean contenido. Tu propio equipo de creadoras virtuales 24/7.',
+    desc: 'Convierte fotos estáticas en personajes que hablan, se mueven y crean contenido. Tu propio equipo de creadores virtuales 24/7.',
   },
   {
     num: '06',
@@ -158,7 +158,7 @@ export default function Modulos() {
             className="font-heading font-bold text-white mx-auto"
             style={{ fontSize: 'clamp(20px, 3vw, 26px)', lineHeight: 1.3, maxWidth: '800px' }}
           >
-            9 módulos. Un orden exacto. Una transformación: de creadora invisible → a creadora con marca propia y marcas pagándote.
+            9 módulos. Un orden exacto. Una transformación: de creador invisible → a creador con marca propia y marcas pagándote.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 16 }}

@@ -31,7 +31,7 @@ const faqs = [
   },
   {
     q: '¿Sirve si vivo en México / Colombia / Chile / Argentina?',
-    a: 'Sí. Está pensado para creadoras latinas y enseña referencias, herramientas y estrategias que funcionan en todo LATAM.',
+    a: 'Sí. Está pensado para creadores latinos y enseña referencias, herramientas y estrategias que funcionan en todo LATAM.',
   },
   {
     q: '¿Hay soporte 1 a 1?',
@@ -43,7 +43,7 @@ const faqs = [
   },
   {
     q: '¿Por qué el precio sube?',
-    a: 'Porque los primeros 50 cupos son para fundadoras — las que confían en el sistema antes de que sea masivo. Después el precio escala a $59 y luego a $97. Es un compromiso real, no falsa urgencia.',
+    a: 'Porque los primeros 50 cupos son para fundadores — los que confían en el sistema antes de que sea masivo. Después el precio escala a $59 y luego a $97. Es un compromiso real, no falsa urgencia.',
   },
 ]
 

@@ -59,7 +59,7 @@ export default function QuienSoy() {
                 Soy una persona que descubrió cómo usar IA de forma simple, visual y estratégica para crear contenido que destaca en redes — y ahora enseño exactamente eso.
               </p>
               <p className="font-body mb-4">
-                Empecé como muchas de ustedes: con ganas, sin claridad, viendo creadoras grandes y sintiendo que iba tarde.
+                Empecé como muchos de ustedes: con ganas, sin claridad, viendo creadores grandes y sintiendo que iba tarde.
               </p>
               <p className="font-body mb-4">
                 Hasta que entendí algo clave:
@@ -71,7 +71,7 @@ export default function QuienSoy() {
                 El problema nunca fue el talento. Fue no tener un sistema.
               </p>
               <p className="font-body mb-4">
-                Hoy ayudo a creadoras pequeñas a verse profesionales, construir autoridad y cobrar como marcas — usando IA como su equipo de producción.
+                Hoy ayudo a creadores pequeños a verse profesionales, construir autoridad y cobrar como marcas — usando IA como su equipo de producción.
               </p>
               <p className="font-body mb-4">
                 Hago esto por un propósito más grande que yo:{' '}

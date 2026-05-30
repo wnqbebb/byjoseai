@@ -6,8 +6,8 @@ const dolores = [
   'Tienes talento. Lo sabes. La gente cercana te lo dice.',
   'Publicas a diario. Cuidas cada detalle. Intentas conectar.',
   'Pero las marcas siguen sin verte.',
-  'Y mientras tanto ves a otras creadoras conseguir colaboraciones — y tú sigues invisible.',
-  'Tu contenido se ve "amateur" al lado del de ellas. Y lo sientes.',
+  'Y mientras tanto ves a otros creadores conseguir colaboraciones — y tú sigues invisible.',
+  'Tu contenido se ve "amateur" al lado del de ellos. Y lo sientes.',
   'Sabes que la IA es la oportunidad… pero no sabes ni por dónde empezar.',
   'Y lo más doloroso: cada día que pasa, sientes que vas más tarde.',
 ]
@@ -25,7 +25,7 @@ export default function Dolor() {
           className="text-h2 text-white text-center mb-12 uppercase"
           style={{ fontFamily: 'var(--font-display)', fontWeight: 700 }}
         >
-          SEAMOS HONESTAS
+          SEAMOS HONESTOS
         </motion.h2>
 
         {/* 7 dolores */}
