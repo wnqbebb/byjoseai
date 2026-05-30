@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
 import Script from 'next/script'
 import { usePathname, useSearchParams } from 'next/navigation'
 
@@ -13,17 +13,20 @@ export const trackPixelEvent = (name: string, options = {}) => {
   }
 }
 
-export default function MetaPixel() {
+function MetaPixelInner() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
   useEffect(() => {
-    // Track PageView on load and when URL search params change
     if ((window as any).fbq) {
       ;(window as any).fbq('track', 'PageView')
     }
   }, [pathname, searchParams])
 
+  return null
+}
+
+export default function MetaPixel() {
   return (
     <>
       <Script
@@ -53,6 +56,10 @@ export default function MetaPixel() {
           alt=""
         />
       </noscript>
+      <Suspense fallback={null}>
+        <MetaPixelInner />
+      </Suspense>
     </>
   )
 }
+
