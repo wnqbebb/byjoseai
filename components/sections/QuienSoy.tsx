@@ -16,19 +16,36 @@ export default function QuienSoy() {
             viewport={{ once: true }}
             className="flex justify-center lg:justify-start"
           >
-            {/* Real circular photo of José Díaz */}
+            {/* Circular placeholder avatar */}
             <div
-              className="relative w-[240px] h-[240px] lg:w-[360px] lg:h-[360px] rounded-full overflow-hidden group"
+              className="relative w-[240px] h-[240px] lg:w-[360px] lg:h-[360px] rounded-full overflow-hidden group flex flex-col items-center justify-center"
               style={{
-                border: '4px solid var(--orange-500)',
-                boxShadow: '0 20px 60px rgba(255,107,53,0.3)',
+                border: '4px dashed var(--orange-500)',
+                background: 'linear-gradient(135deg, rgba(15,30,51,0.6) 0%, rgba(22,40,69,0.8) 100%)',
+                boxShadow: '0 20px 60px rgba(255,107,53,0.15)',
               }}
             >
-              <img
-                src="/WhatsApp%20Image%202026-05-25%20at%2022.35.47.jpeg"
-                alt="José Díaz — byjose.ai"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
+              {/* Profile icon */}
+              <svg
+                className="w-16 h-16 text-orange-500/40 mb-3 transition-transform duration-500 group-hover:scale-110"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                />
+              </svg>
+              <span
+                className="font-heading font-bold tracking-wider uppercase text-xs"
+                style={{ color: 'var(--orange-500)', opacity: 0.8 }}
+              >
+                AVATAR JOSÉ DÍAZ
+              </span>
             </div>
           </motion.div>
 

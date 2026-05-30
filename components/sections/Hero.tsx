@@ -177,19 +177,42 @@ export default function Hero() {
                 }}
               />
 
-              {/* Real photo of José Díaz with styling */}
+              {/* Placeholder instead of real photo */}
               <div
-                className="relative w-[280px] h-[280px] lg:w-[420px] lg:h-[420px] rounded-2xl overflow-hidden group"
+                className="relative w-[280px] h-[280px] lg:w-[420px] lg:h-[420px] rounded-2xl overflow-hidden group flex flex-col items-center justify-center"
                 style={{
-                  border: '2px solid var(--orange-500)',
-                  boxShadow: '0 20px 60px rgba(255,107,53,0.2)',
+                  border: '2px dashed var(--orange-500)',
+                  background: 'linear-gradient(135deg, rgba(15,30,51,0.6) 0%, rgba(22,40,69,0.8) 100%)',
+                  boxShadow: '0 20px 60px rgba(255,107,53,0.1)',
                 }}
               >
-                <img
-                  src="/WhatsApp%20Image%202026-05-25%20at%2022.35.46.jpeg"
-                  alt="José Díaz — byjose.ai"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+                {/* Profile outline SVG */}
+                <svg
+                  className="w-20 h-20 text-orange-500/40 mb-4 transition-transform duration-500 group-hover:scale-110"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                  />
+                </svg>
+                <span
+                  className="font-heading font-bold tracking-wider uppercase text-sm"
+                  style={{ color: 'var(--orange-500)', opacity: 0.8 }}
+                >
+                  FOTO JOSÉ DÍAZ
+                </span>
+                <span
+                  className="font-body text-xs mt-1"
+                  style={{ color: 'var(--gray-400)', opacity: 0.6 }}
+                >
+                  (Con gafas naranja)
+                </span>
               </div>
             </div>
           </motion.div>
