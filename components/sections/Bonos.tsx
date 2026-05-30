@@ -1,54 +1,47 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Gift, MessageSquare, TrendingUp, Users, RefreshCw, Star, CheckSquare } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const bonos = [
   {
-    icon: Gift,
-    title: 'Vault de Prompts Probados',
-    value: '$97',
-    desc: '+200 prompts organizados por categoría: rostro, dataset, voz, movimiento y UGC. Copiados directamente de producciones reales.',
+    title: 'Skill de Claude "Recrea Cualquier Video"',
+    desc: 'Pega el link de un Reel viral y mi Skill de Claude te lo adapta a tu marca, tu voz y tu nicho en segundos. Sin copiar — robar como artista, al estilo IA.',
+    value: '$97 USD',
   },
   {
-    icon: MessageSquare,
-    title: 'Plantillas de Email para Marcas',
-    value: '$47',
-    desc: '7 plantillas de outreach frío que generan respuestas. Con el subject, el cuerpo y el cierre que convierte.',
+    title: 'Skill de Claude "Carrusel Automático"',
+    desc: 'Le das una idea y mi Skill te entrega un carrusel completo de Instagram listo para publicar. Hook, slides, copy, diseño visual. Todo en un clic.',
+    value: '$147 USD',
   },
   {
-    icon: TrendingUp,
-    title: 'Kit de Precio UGC',
-    value: '$37',
-    desc: 'Cómo estructurar tus tarifas, cuándo subir precios y cómo responder a marcas que quieren pagar menos de lo que vales.',
+    title: 'GPT "Guiones de Reels que Venden"',
+    desc: 'GPT personalizado para escribir guiones de Reels con hooks + estructura + timestamps. Le das el tema, te entrega el guion completo.',
+    value: '$97 USD',
   },
   {
-    icon: Users,
-    title: 'Comunidad Privada de Creadores',
-    value: '$197',
-    desc: 'Acceso al grupo privado donde José responde dudas, comparte nuevas herramientas y da feedback a portafolios.',
+    title: 'GPT "Hooks UGC Probados"',
+    desc: 'GPT entrenado con +100 hooks UGC que ya funcionaron. Pega el producto o tema, recibe el hook listo para grabar.',
+    value: '$67 USD',
   },
   {
-    icon: RefreshCw,
-    title: 'Actualizaciones de por Vida',
-    value: '$∞',
-    desc: 'La IA cambia cada semana. El curso también. Cada vez que José actualice el sistema, tú recibes el contenido nuevo sin costo adicional.',
+    title: 'Biblioteca de Prompts Virales (PDF + Notion)',
+    desc: 'La biblioteca completa con los prompts exactos que uso para crear hooks, guiones, conceptos virales y carruseles. Organizada por categoría, lista para copiar y pegar.',
+    value: '$97 USD',
   },
   {
-    icon: Star,
-    title: 'Sesión de Revisión de Portafolio',
-    value: '$127',
-    desc: 'Una sesión en grupo (live o grabada) donde José revisa portafolios reales y da feedback accionable antes de enviarlos a marcas.',
+    title: 'Lista Marcas que Pagan + Scripts de Outreach (PDF + Notion)',
+    desc: 'La base de datos secreta con las marcas que YA están pagando creadoras que usan IA — con sus emails, briefs reales, tarifas de referencia + los scripts de outreach exactos que funcionan para cerrar tu primera colaboración.',
+    value: '$197 USD',
   },
   {
-    icon: CheckSquare,
-    title: 'Checklist de Lanzamiento Rápido',
-    value: '$27',
-    desc: 'El checklist exacto para tener tu primer video UGC con IA listo en 72 horas. Paso a paso, sin excusas.',
+    title: 'Workflows Probados (PDF + Notion)',
+    desc: 'Los flujos de trabajo paso a paso que uso para producir 30 piezas de contenido en una tarde. Plug & play. Solo sigues el orden y produces.',
+    value: '$97 USD',
   },
 ]
 
@@ -64,7 +57,7 @@ export default function Bonos() {
           opacity: 1,
           y: 0,
           duration: 0.5,
-          stagger: 0.09,
+          stagger: 0.08,
           ease: 'power2.out',
           scrollTrigger: {
             trigger: '.bonos-grid',
@@ -76,69 +69,93 @@ export default function Bonos() {
     return () => ctx.revert()
   }, [])
 
-  const totalValue = bonos
-    .filter((b) => b.value !== '$∞')
-    .reduce((sum, b) => sum + parseInt(b.value.replace('$', '')), 0)
-
   return (
-    <section ref={sectionRef} className="relative py-24 md:py-32 px-4 overflow-hidden">
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[300px] h-[500px] bg-yellow/5 blur-[100px] pointer-events-none" />
+    <section ref={sectionRef} className="py-20 lg:py-28" style={{ background: 'var(--navy-800)' }}>
+      <div className="container-base max-w-[1200px]">
+        <motion.h2
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+          className="font-heading font-bold text-white text-center mb-4"
+          style={{ fontSize: 'clamp(28px, 4vw, 40px)', lineHeight: 1.2 }}
+        >
+          ADEMÁS DEL CURSO, HOY TE LLEVAS 7 BONOS QUE ACELERAN TU RESULTADO 🎁
+        </motion.h2>
 
-      <div className="relative z-10 max-w-5xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="font-body text-yellow text-sm uppercase tracking-widest font-semibold mb-4">
-            Incluido en el precio
-          </p>
-          <h2 className="font-heading font-extrabold text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight">
-            7 bonos que valen{' '}
-            <span className="text-yellow">${totalValue}+</span>
-          </h2>
-          <p className="font-body text-white/60 text-lg mt-4">
-            Y que tú obtienes sin costo adicional.
-          </p>
-        </div>
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="font-body text-center mx-auto mb-16 max-w-[700px]"
+          style={{ color: 'var(--gray-400)', fontSize: 'clamp(16px, 2vw, 18px)', lineHeight: 1.6 }}
+        >
+          Skills, GPTs y recursos que yo mismo uso. Listos para que arranques desde el día 1 sin construir nada desde cero.
+        </motion.p>
 
-        <div className="bonos-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {bonos.map((bono, i) => {
-            const Icon = bono.icon
-            return (
-              <div
-                key={i}
-                className={`bono-card flex flex-col gap-4 bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-yellow/30 rounded-2xl p-6 transition-all duration-300 ${i === 6 ? 'sm:col-span-2 lg:col-span-1' : ''}`}
+        <div className="bonos-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {bonos.map((bono, i) => (
+            <div
+              key={i}
+              className="bono-card card-hover relative rounded-2xl p-6 lg:p-8 flex flex-col"
+              style={{
+                background: 'var(--navy-900)',
+                border: '1px solid rgba(255,255,255,0.05)',
+                transition: 'border-color 300ms, box-shadow 300ms',
+              }}
+            >
+              {/* Badge BONO */}
+              <span
+                className="absolute top-4 right-4 font-body font-bold uppercase rounded-md px-2 py-1"
+                style={{ background: 'var(--orange-500)', color: '#FFFFFF', fontSize: '11px', letterSpacing: '0.04em' }}
               >
-                <div className="flex items-start justify-between">
-                  <div className="w-10 h-10 rounded-xl bg-yellow/10 border border-yellow/20 flex items-center justify-center flex-shrink-0">
-                    <Icon className="w-5 h-5 text-yellow" />
-                  </div>
-                  <span className="font-heading font-black text-yellow text-lg">
-                    {bono.value}
-                  </span>
-                </div>
-                <div>
-                  <h3 className="font-heading font-bold text-white text-lg mb-2">
-                    {bono.title}
-                  </h3>
-                  <p className="font-body text-white/55 text-sm leading-relaxed">
-                    {bono.desc}
-                  </p>
-                </div>
+                BONO
+              </span>
+
+              <div className="text-5xl mb-4" style={{ lineHeight: 1 }}>🎁</div>
+
+              <h3
+                className="font-heading font-bold text-white mb-2 pr-12"
+                style={{ fontSize: '18px', lineHeight: 1.3 }}
+              >
+                {bono.title}
+              </h3>
+
+              <p
+                className="font-body flex-1 mb-4"
+                style={{ color: 'var(--gray-400)', fontSize: '14px', lineHeight: 1.6 }}
+              >
+                {bono.desc}
+              </p>
+
+              {/* Footer valor */}
+              <div
+                className="pt-4"
+                style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}
+              >
+                <p
+                  className="font-body font-semibold"
+                  style={{ color: 'var(--orange-500)', fontSize: '14px' }}
+                >
+                  Valor real: {bono.value}
+                </p>
               </div>
-            )
-          })}
+            </div>
+          ))}
         </div>
 
-        {/* Value stack summary */}
-        <div className="mt-10 bg-yellow/5 border border-yellow/20 rounded-2xl px-8 py-6 text-center">
-          <p className="font-body text-white/60 text-sm mb-2">
-            Valor total de los bonos
-          </p>
-          <p className="font-heading font-black text-4xl text-yellow">
-            ${totalValue}+ USD
-          </p>
-          <p className="font-body text-white/40 text-sm mt-2">
-            Incluidos sin costo adicional cuando entras hoy.
-          </p>
-        </div>
+        {/* Cierre */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="font-heading font-bold text-center mt-16"
+          style={{ color: 'var(--yellow-500)', fontSize: 'clamp(22px, 3vw, 28px)', lineHeight: 1.3 }}
+        >
+          Valor real de los bonos: $799 USD — Incluidos sin costo extra.
+        </motion.p>
       </div>
     </section>
   )

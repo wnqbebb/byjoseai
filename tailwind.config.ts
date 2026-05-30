@@ -8,18 +8,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        navy: '#0A1628',
-        'navy-light': '#0F2040',
-        'navy-card': '#0D1E35',
-        green: '#1FBA72',
-        'green-dark': '#18A063',
-        orange: '#FF6B35',
-        yellow: '#FFD83A',
-        cream: '#F5F1EA',
+        'navy-900': '#0A1628',
+        'navy-800': '#0F1E33',
+        'navy-700': '#162845',
+        'orange-500': '#FF6B35',
+        'orange-400': '#FF8552',
+        'green-500': '#1FBA72',
+        'yellow-500': '#FFD83A',
+        'gray-400': '#94A3B8',
+        'gray-600': '#475569',
       },
       fontFamily: {
-        heading: ['var(--font-bricolage)', 'sans-serif'],
-        body: ['var(--font-inter)', 'sans-serif'],
+        heading: ['var(--font-display)', 'sans-serif'],
+        body: ['var(--font-body)', 'sans-serif'],
       },
       animation: {
         'fade-up': 'fadeUp 0.6s ease forwards',

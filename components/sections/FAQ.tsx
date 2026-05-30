@@ -1,109 +1,97 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Plus, Minus } from 'lucide-react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-
-gsap.registerPlugin(ScrollTrigger)
+import { ChevronDown } from 'lucide-react'
 
 const faqs = [
   {
-    q: '¿Necesito experiencia previa en IA?',
-    a: 'No. El sistema está diseñado para que empieces desde cero. Si sabes usar Instagram y YouTube, tienes las habilidades técnicas suficientes para empezar. El módulo 1 arranca desde lo más básico.',
+    q: '¿Funciona si soy 100% principiante en IA?',
+    a: 'Sí. El sistema arranca desde cero. Te enseño qué herramientas usar, en qué orden y cómo aplicarlas. No necesitas experiencia previa.',
   },
   {
-    q: '¿Funciona desde mi celular o necesito una computadora potente?',
-    a: 'El 80% del sistema funciona desde tu celular. El módulo 7 está dedicado específicamente a editar y producir contenido premium desde iPhone o Android. No necesitas un setup caro.',
+    q: '¿Necesito mostrar mi cara?',
+    a: 'No. Modo Creador te enseña ambos caminos: cómo clonarte si quieres usar tu imagen, o cómo crear avatares IA si prefieres no aparecer.',
   },
   {
-    q: '¿Cuándo tengo acceso al contenido?',
-    a: 'Inmediatamente después de pagar. Recibirás un email con tus credenciales de acceso a la plataforma en los próximos 5 minutos.',
+    q: '¿Necesito cámara, micrófono o equipo profesional?',
+    a: 'No. Con tu celular y una laptop básica te alcanza. Todo el sistema está diseñado para que arranques con lo que ya tienes.',
   },
   {
-    q: '¿El contenido se queda obsoleto con las actualizaciones de IA?',
-    a: 'No. Con la garantía de actualizaciones de por vida, cada vez que una herramienta cambie o haya una mejor opción, el curso se actualiza. Pagas una vez, accedes para siempre.',
+    q: '¿En cuánto tiempo voy a conseguir mi primera colaboración paga?',
+    a: 'La mayoría empieza a notar cambios en su contenido en la primera semana. La primera colaboración paga suele llegar dentro de los primeros 30 días — aplicando consistente y siguiendo los scripts del Bono #6.',
   },
   {
-    q: '¿Hay soporte si me trabo en algún paso?',
-    a: 'Sí. Tienes acceso a la comunidad privada donde puedes hacer preguntas y José responde directamente. También hay sesiones grupales de revisión incluidas.',
+    q: '¿Cuánto tiempo le tengo que dedicar por semana?',
+    a: 'Con 3 a 5 horas semanales avanzas y ves resultados. La clave no es el tiempo — es seguir el orden del sistema.',
   },
   {
-    q: '¿Funciona para cualquier nicho o solo para ciertos temas?',
-    a: 'El sistema funciona para cualquier creador de contenido, independientemente del nicho. El proceso de clonar tu identidad, producir UGC y conseguir marcas aplica igual para fitness, finanzas, lifestyle, educación o cualquier otro verticale.',
+    q: '¿Tengo acceso de por vida?',
+    a: 'Sí. Y a todas las actualizaciones que haga al sistema. Modo Creador evoluciona contigo.',
   },
   {
-    q: '¿Qué pasa exactamente después de que pago?',
-    a: 'Recibes acceso inmediato a los 9 módulos, todos los bonos y la comunidad privada. El checklist de lanzamiento rápido te ayuda a tener tu primer video listo en 72 horas.',
+    q: '¿Sirve si vivo en México / Colombia / Chile / Argentina?',
+    a: 'Sí. Está pensado para creadoras latinas y enseña referencias, herramientas y estrategias que funcionan en todo LATAM.',
   },
   {
-    q: '¿Puedo conseguir marcas reales siendo nuevo?',
-    a: 'Sí. El módulo 8 está diseñado específicamente para construir un portafolio que convenza a marcas sin necesidad de tener historial previo. Con el sistema correcto, "ser nuevo" deja de ser una desventaja.',
+    q: '¿Hay soporte 1 a 1?',
+    a: 'No. Modo Creador es un curso auto-aplicable. A $29 no es escalable ofrecer 1 a 1. Lo que sí incluye es la comunidad privada donde puedes hacer preguntas.',
+  },
+  {
+    q: '¿Hay garantía?',
+    a: 'Sí, 7 días. Si entras y sientes que no es para ti, te devuelvo tu inversión completa.',
+  },
+  {
+    q: '¿Por qué el precio sube?',
+    a: 'Porque los primeros 50 cupos son para fundadoras — las que confían en el sistema antes de que sea masivo. Después el precio escala a $59 y luego a $97. Es un compromiso real, no falsa urgencia.',
   },
 ]
 
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null)
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.faq-item',
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.5,
-          stagger: 0.07,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '.faq-list',
-            start: 'top 80%',
-          },
-        }
-      )
-    }, sectionRef)
-    return () => ctx.revert()
-  }, [])
 
   return (
-    <section ref={sectionRef} className="relative py-24 md:py-32 px-4 overflow-hidden">
-      <div className="relative z-10 max-w-2xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="font-body text-green text-sm uppercase tracking-widest font-semibold mb-4">
-            Preguntas frecuentes
-          </p>
-          <h2 className="font-heading font-extrabold text-4xl md:text-5xl leading-[1.1] tracking-tight">
-            FAQ
-          </h2>
-        </div>
+    <section className="py-20 lg:py-28" style={{ background: 'var(--navy-900)' }}>
+      <div className="container-base max-w-[800px]">
+        <motion.h2
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+          className="font-heading font-bold text-white text-center mb-12 text-h2"
+        >
+          PREGUNTAS FRECUENTES
+        </motion.h2>
 
-        <div className="faq-list space-y-3">
+        <div className="flex flex-col">
           {faqs.map((faq, i) => (
             <div
               key={i}
-              className="faq-item bg-white/[0.03] hover:bg-white/[0.05] border border-white/10 rounded-2xl overflow-hidden transition-colors"
+              style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}
             >
               <button
-                className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
+                className="w-full flex items-center justify-between gap-4 py-5 text-left"
                 onClick={() => setOpen(open === i ? null : i)}
                 aria-expanded={open === i}
               >
-                <span className="font-heading font-semibold text-white text-base leading-snug">
+                <span
+                  className="font-heading font-bold text-white"
+                  style={{ fontSize: 'clamp(17px, 2vw, 19px)', lineHeight: 1.3 }}
+                >
                   {faq.q}
                 </span>
-                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-white/10 flex items-center justify-center">
-                  {open === i ? (
-                    <Minus className="w-3 h-3 text-white" />
-                  ) : (
-                    <Plus className="w-3 h-3 text-white" />
-                  )}
-                </span>
+                <ChevronDown
+                  className="flex-shrink-0 transition-transform duration-300"
+                  style={{
+                    color: 'rgba(255,255,255,0.5)',
+                    width: '20px',
+                    height: '20px',
+                    transform: open === i ? 'rotate(180deg)' : 'rotate(0deg)',
+                  }}
+                />
               </button>
 
-              <AnimatePresence>
+              <AnimatePresence initial={false}>
                 {open === i && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
@@ -112,11 +100,12 @@ export default function FAQ() {
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 pb-5 border-t border-white/[0.06]">
-                      <p className="font-body text-white/65 text-base leading-relaxed pt-4">
-                        {faq.a}
-                      </p>
-                    </div>
+                    <p
+                      className="font-body pb-6"
+                      style={{ color: 'var(--gray-400)', fontSize: '16px', lineHeight: 1.7 }}
+                    >
+                      {faq.a}
+                    </p>
                   </motion.div>
                 )}
               </AnimatePresence>

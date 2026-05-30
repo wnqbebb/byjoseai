@@ -1,115 +1,142 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Package } from 'lucide-react'
-
-gsap.registerPlugin(ScrollTrigger)
+import { motion } from 'framer-motion'
+import { useLenis } from '@/lib/lenis-provider'
+import { trackPixelEvent } from '@/components/analytics/meta-pixel'
 
 export default function Producto() {
-  const sectionRef = useRef<HTMLDivElement>(null)
+  const { scrollTo } = useLenis()
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.producto-card',
-        { opacity: 0, scale: 0.95 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.producto-card',
-            start: 'top 80%',
-          },
-        }
-      )
-    }, sectionRef)
-    return () => ctx.revert()
-  }, [])
-
+  const handleCTAClick = () => {
+    trackPixelEvent('Lead', { cta_location: 'Producto' })
+    scrollTo('#precio')
+  }
   return (
-    <section
-      ref={sectionRef}
-      id="producto"
-      className="relative py-24 md:py-32 px-4 overflow-hidden"
-    >
-      {/* Green glow top */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-green/10 blur-[100px] pointer-events-none" />
+    <section id="producto" className="py-20 lg:py-28 relative overflow-hidden" style={{ background: 'var(--navy-800)' }}>
+      {/* Blob naranja sutil */}
+      <div
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full"
+        style={{ background: 'radial-gradient(ellipse, rgba(255,107,53,0.08) 0%, transparent 70%)', filter: 'blur(60px)' }}
+      />
 
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
-        <p className="font-body text-green text-sm uppercase tracking-widest font-semibold mb-4">
-          Presentando
-        </p>
-        <h2 className="font-heading font-extrabold text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight mb-6">
-          Sistema{' '}
-          <span className="text-gradient-green">Modo Creador</span>
-        </h2>
-        <p className="font-body text-white/60 text-xl max-w-2xl mx-auto leading-relaxed mb-16">
-          No es un curso de IA genérico. Es el sistema exacto que José usa para
-          producir, cobrar y escalar — estructurado en 9 módulos para que vayas
-          de cero a tu primera marca pagada.
-        </p>
+      <div className="container-base max-w-[900px] text-center relative z-10">
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="font-body font-medium mb-4"
+          style={{ color: 'var(--orange-500)', fontSize: '16px' }}
+        >
+          Te presento...
+        </motion.p>
 
-        <div className="producto-card bg-navy-card border border-green/20 rounded-3xl p-8 md:p-12 text-left glow-green">
-          <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="font-heading font-bold mb-6 bg-gradient-to-r from-white to-[#FF6B35] bg-clip-text text-transparent"
+          style={{ fontSize: 'clamp(48px, 8vw, 96px)', letterSpacing: '-0.03em', lineHeight: 1 }}
+        >
+          SISTEMA MODO CREADOR
+        </motion.h2>
 
-            {/* Product visual placeholder */}
-            <div className="flex-shrink-0">
-              {/* TODO: PENDIENTE — mockup del producto (laptop/tablet con la plataforma) */}
-              <div className="placeholder-box w-64 h-40 rounded-2xl">
-                <Package className="w-10 h-10 text-white/20" />
-                <p className="text-center text-xs px-4 leading-relaxed">
-                  MOCKUP PRODUCTO
-                  <br />
-                  <span className="text-white/20">512×320px</span>
-                </p>
-              </div>
-            </div>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="font-heading font-bold text-white mb-8 max-w-[700px] mx-auto"
+          style={{ fontSize: 'clamp(20px, 3vw, 26px)', lineHeight: 1.3 }}
+        >
+          El sistema completo para crear contenido premium con IA — y cerrar tu primera colaboración paga con una marca en los próximos 30 días.
+        </motion.p>
 
-            {/* Product details */}
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="bg-green/10 border border-green/30 text-green text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide">
-                  Curso Digital
-                </span>
-                <span className="bg-orange/10 border border-orange/30 text-orange text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide">
-                  Acceso inmediato
-                </span>
-              </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="max-w-[700px] mx-auto text-left"
+        >
+          <p className="font-body mb-5" style={{ color: 'var(--gray-400)', fontSize: 'clamp(16px, 2vw, 18px)', lineHeight: 1.6 }}>
+            Modo Creador no es un curso más de IA. Es la hoja de ruta exacta que aplico (y que enseño a mis clientes) para que creadoras sin experiencia técnica, sin equipo caro y sin años de carrera construyan contenido que parece de campaña — y empiecen a cobrar como tal.
+          </p>
+          <p className="font-body" style={{ color: 'var(--gray-400)', fontSize: 'clamp(16px, 2vw, 18px)', lineHeight: 1.6 }}>
+            Aquí no aprendes &quot;trucos sueltos&quot;. Aprendes el **sistema** que las creadoras profesionales usan en silencio para verse premium y cobrar como marcas.
+          </p>
+        </motion.div>
 
-              <h3 className="font-heading font-extrabold text-3xl text-white mb-3">
-                9 módulos. Todo lo que necesitas.
-              </h3>
-              <p className="font-body text-white/60 text-base leading-relaxed mb-6">
-                Desde cómo generar tu primer avatar con IA hasta cómo contactar
-                a una marca y cobrar tu primer contrato UGC. Sin partes que
-                faltan. Sin teoría sin aplicación.
-              </p>
+        {/* ── Infinite Scrolling Tools Marquee ── */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.35 }}
+          viewport={{ once: true }}
+          className="mt-16 w-full max-w-5xl mx-auto"
+        >
+          <p className="font-body uppercase text-xs tracking-[0.2em] mb-6 text-center font-bold" style={{ color: 'var(--orange-500)' }}>
+            HERRAMIENTAS QUE DOMINARÁS AL 100% ADENTRO:
+          </p>
+          <div className="relative w-full overflow-hidden py-4 bg-[rgba(15,30,51,0.5)] border-y border-[rgba(255,255,255,0.05)] rounded-2xl">
+            {/* Fade overlays for smooth edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#0F1E33] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#0F1E33] to-transparent z-10 pointer-events-none" />
 
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  '9 módulos en video',
-                  'Prompts probados en producción',
-                  'Plantillas listas para usar',
-                  'Comunidad privada',
-                  'Actualizaciones de por vida',
-                  'Acceso inmediato al pagar',
-                ].map((item, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-2 text-white/70 text-sm font-body"
-                  >
-                    <span className="text-green text-base">✓</span>
-                    {item}
-                  </div>
-                ))}
-              </div>
+            <div className="animate-marquee flex gap-8 whitespace-nowrap items-center">
+              {[
+                { name: 'NanoBanana Pro', logo: '/nano%20banana%20pro.jpg' },
+                { name: 'Flux 2.0', logo: '/Flux%202.0.jpg' },
+                { name: 'ElevenLabs', logo: '/ElevenLabs.png' },
+                { name: 'Magnific AI', logo: '/Magnific%20AI.jpg' },
+                { name: 'Kling AI', logo: '/Kling%20AI.jpg' },
+                { name: 'Google VEO 3.1', logo: '/Google%20VEO%203.1.png' },
+                { name: 'Hedra Voice', logo: '/Hedra%20Voice.png' },
+                { name: 'ChatGPT', logo: '/ChatGPT%202.png' },
+                { name: 'Lupa AI', logo: '/Lupa%20AI.png' },
+                { name: 'OpenArt', logo: '/OpenArt%20Upscaler.png' },
+              ].concat([
+                { name: 'NanoBanana Pro', logo: '/nano%20banana%20pro.jpg' },
+                { name: 'Flux 2.0', logo: '/Flux%202.0.jpg' },
+                { name: 'ElevenLabs', logo: '/ElevenLabs.png' },
+                { name: 'Magnific AI', logo: '/Magnific%20AI.jpg' },
+                { name: 'Kling AI', logo: '/Kling%20AI.jpg' },
+                { name: 'Google VEO 3.1', logo: '/Google%20VEO%203.1.png' },
+                { name: 'Hedra Voice', logo: '/Hedra%20Voice.png' },
+                { name: 'ChatGPT', logo: '/ChatGPT%202.png' },
+                { name: 'Lupa AI', logo: '/Lupa%20AI.png' },
+                { name: 'OpenArt', logo: '/OpenArt%20Upscaler.png' },
+              ]).map((tool, index) => (
+                <div
+                  key={index}
+                  className="inline-flex items-center gap-3 bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.05)] rounded-xl px-5 py-3 hover:border-[rgba(255,107,53,0.3)] transition-colors duration-300"
+                >
+                  <img
+                    src={tool.logo}
+                    alt={tool.name}
+                    className="w-8 h-8 rounded-lg object-cover bg-white"
+                  />
+                  <span className="font-heading text-sm font-semibold tracking-wider uppercase text-white select-none">
+                    {tool.name}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="mt-14"
+        >
+          <button onClick={handleCTAClick} className="btn-cta">
+            QUIERO EL SISTEMA →
+          </button>
+        </motion.div>
       </div>
     </section>
   )

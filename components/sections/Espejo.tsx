@@ -1,85 +1,70 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { motion } from 'framer-motion'
+import { Check } from 'lucide-react'
 
-gsap.registerPlugin(ScrollTrigger)
+const items = [
+  'Sabes que tienes talento pero no logras destacar',
+  'Tu contenido se ve "casero" comparado con creadoras grandes',
+  'Quieres trabajar con marcas pero no sabes cómo empezar',
+  'Ya probaste IA suelta y no funcionó porque te falta sistema',
+  'Estás cansada de ser invisible',
+  'Quieres monetizar en redes — pero hacerlo bien, no de cualquier forma',
+]
 
 export default function Espejo() {
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.espejo-content > *',
-        { opacity: 0, y: 32 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.15,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.espejo-content',
-            start: 'top 80%',
-          },
-        }
-      )
-    }, sectionRef)
-    return () => ctx.revert()
-  }, [])
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative py-24 md:py-32 px-4 overflow-hidden"
-    >
-      {/* Background accent */}
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-green/5 rounded-full blur-[80px] pointer-events-none" />
+    <section className="py-20 lg:py-28" style={{ background: 'var(--navy-800)' }}>
+      <div className="container-base max-w-[720px]">
+        <motion.h2
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+          className="font-heading font-bold text-white text-center mb-10 uppercase"
+          style={{ fontSize: 'clamp(26px, 4vw, 40px)', lineHeight: 1.15, letterSpacing: '-0.01em' }}
+        >
+          SI ESTO ERES TÚ, SIGUE LEYENDO — ESTA PÁGINA TE VA A CAMBIAR EL AÑO
+        </motion.h2>
 
-      <div className="relative z-10 max-w-3xl mx-auto text-center">
-        <div className="espejo-content space-y-6">
-          <p className="font-body text-green text-sm uppercase tracking-widest font-semibold">
-            La verdad que nadie te dijo
-          </p>
-
-          <h2 className="font-heading font-extrabold text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight">
-            No es falta de talento.
-            <br />
-            <span className="text-white/40">Es falta de sistema.</span>
-          </h2>
-
-          <div className="bg-white/[0.04] border border-white/10 rounded-3xl p-8 md:p-12 text-left space-y-6 mt-8">
-            <p className="font-body text-white/80 text-lg leading-relaxed">
-              La industria del contenido cambió completamente en 18 meses. Lo
-              que antes tardaba semanas ahora tarda horas. Lo que antes
-              necesitaba un equipo ahora lo hace una persona con las
-              herramientas correctas.
-            </p>
-            <p className="font-body text-white/80 text-lg leading-relaxed">
-              Los creadores que están ganando{' '}
-              <span className="text-white font-semibold">no tienen más talento que tú</span>.
-              Tienen un proceso sistemático para producir, entregar y cobrar —
-              una y otra vez — sin depender de un día de grabación perfecto.
-            </p>
-            <div className="border-l-4 border-green pl-6">
-              <p className="font-heading font-bold text-xl text-white">
-                "La IA no reemplaza creatividad. La multiplica."
+        <div className="flex flex-col gap-4 mb-10">
+          {items.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              viewport={{ once: true }}
+              className="flex items-start gap-4"
+            >
+              <div
+                className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center"
+                style={{ background: 'rgba(31,186,114,0.15)', border: '1px solid rgba(31,186,114,0.3)' }}
+              >
+                <Check
+                  style={{ color: 'var(--green-500)', width: '20px', height: '20px', strokeWidth: 3 }}
+                />
+              </div>
+              <p
+                className="font-body font-medium"
+                style={{ color: '#FFFFFF', fontSize: 'clamp(17px, 2vw, 19px)', lineHeight: 1.55, paddingTop: '6px' }}
+              >
+                {item}
               </p>
-              <p className="font-body text-white/50 text-sm mt-2">
-                — José Díaz, byjose.ai
-              </p>
-            </div>
-          </div>
-
-          <p className="font-body text-white/60 text-lg leading-relaxed pt-4">
-            Eso es exactamente lo que vas a aprender en{' '}
-            <span className="text-green font-semibold">Sistema Modo Creador</span>
-            : cómo usar la IA para multiplicar tu presencia, tu autoridad y tus
-            ingresos.
-          </p>
+            </motion.div>
+          ))}
         </div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="font-heading font-bold text-center"
+          style={{ color: 'var(--orange-500)', fontSize: 'clamp(20px, 3vw, 28px)', lineHeight: 1.3 }}
+        >
+          Entonces lo que viene ahora es para ti.
+        </motion.p>
       </div>
     </section>
   )

@@ -1,111 +1,91 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Instagram, UserCircle } from 'lucide-react'
-
-gsap.registerPlugin(ScrollTrigger)
+import { motion } from 'framer-motion'
 
 export default function QuienSoy() {
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.quien-content > *',
-        { opacity: 0, y: 28 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.12,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.quien-content',
-            start: 'top 80%',
-          },
-        }
-      )
-    }, sectionRef)
-    return () => ctx.revert()
-  }, [])
-
   return (
-    <section ref={sectionRef} className="relative py-24 md:py-32 px-4 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-navy via-navy-light/20 to-navy pointer-events-none" />
+    <section className="py-20 lg:py-28" style={{ background: 'var(--navy-900)' }}>
+      <div className="container-base max-w-[1100px]">
+        <div className="grid lg:grid-cols-[40%_60%] gap-12 items-center">
 
-      <div className="relative z-10 max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="font-body text-green text-sm uppercase tracking-widest font-semibold">
-            Quién está detrás
-          </p>
-        </div>
+          {/* Columna izquierda — foto */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="flex justify-center lg:justify-start"
+          >
+            {/* Real circular photo of José Díaz */}
+            <div
+              className="relative w-[240px] h-[240px] lg:w-[360px] lg:h-[360px] rounded-full overflow-hidden group"
+              style={{
+                border: '4px solid var(--orange-500)',
+                boxShadow: '0 20px 60px rgba(255,107,53,0.3)',
+              }}
+            >
+              <img
+                src="/WhatsApp%20Image%202026-05-25%20at%2022.35.47.jpeg"
+                alt="José Díaz — byjose.ai"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+          </motion.div>
 
-        <div className="grid md:grid-cols-[280px_1fr] gap-12 items-center">
-          {/* Photo */}
-          <div className="flex justify-center md:justify-start">
-            {/* TODO: PENDIENTE — foto de José Díaz (con gafas naranja, estilo editorial) */}
-            <div className="placeholder-box w-64 h-72 rounded-3xl">
-              <UserCircle className="w-16 h-16 text-white/20" />
-              <p className="text-center text-xs px-6 leading-relaxed">
-                FOTO JOSÉ DÍAZ
-                <br />
-                Con gafas naranja
-                <br />
-                <span className="text-white/20">512×576px · PNG</span>
+          {/* Columna derecha — texto */}
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            viewport={{ once: true }}
+          >
+            <h2
+              className="font-heading font-bold text-white mb-6"
+              style={{ fontSize: 'clamp(24px, 3vw, 36px)', lineHeight: 1.2 }}
+            >
+              ¿QUIÉN SOY Y POR QUÉ PUEDO ENSEÑARTE ESTO? 👋
+            </h2>
+
+            <div style={{ color: 'var(--gray-400)', fontSize: '17px', lineHeight: 1.7 }}>
+              <p className="font-body mb-4">
+                Hola, soy Jose Díaz. AI UGC Creator.
+              </p>
+              <p className="font-body mb-4">
+                No soy un gurú.<br />
+                No soy un nerd técnico.<br />
+                No soy un experto académico.
+              </p>
+              <p className="font-body mb-4">
+                Soy una persona que descubrió cómo usar IA de forma simple, visual y estratégica para crear contenido que destaca en redes — y ahora enseño exactamente eso.
+              </p>
+              <p className="font-body mb-4">
+                Empecé como muchas de ustedes: con ganas, sin claridad, viendo creadoras grandes y sintiendo que iba tarde.
+              </p>
+              <p className="font-body mb-4">
+                Hasta que entendí algo clave:
+              </p>
+              <p
+                className="font-heading font-bold text-white mb-4"
+                style={{ fontSize: 'clamp(20px, 2vw, 22px)', lineHeight: 1.3 }}
+              >
+                El problema nunca fue el talento. Fue no tener un sistema.
+              </p>
+              <p className="font-body mb-4">
+                Hoy ayudo a creadoras pequeñas a verse profesionales, construir autoridad y cobrar como marcas — usando IA como su equipo de producción.
+              </p>
+              <p className="font-body mb-4">
+                Hago esto por un propósito más grande que yo:{' '}
+                <strong className="font-heading font-bold text-white" style={{ fontSize: 'clamp(20px, 2vw, 22px)' }}>mis papás y mi esposo Mañungo</strong>. Por ellos no paro. Y por eso este sistema existe — para que tú también puedas construir algo real, sin depender de equipos caros ni de años de experiencia.
+              </p>
+              <p
+                className="font-heading font-bold text-white"
+                style={{ fontSize: 'clamp(20px, 2vw, 22px)', lineHeight: 1.3 }}
+              >
+                Si yo pude, tú puedes. Solo necesitas el orden correcto.
               </p>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Bio */}
-          <div className="quien-content space-y-6">
-            <div>
-              <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-white leading-[1.1] tracking-tight">
-                Hola, soy{' '}
-                <span className="text-gradient-green">José Díaz</span>
-              </h2>
-              <p className="font-body text-white/50 text-sm mt-2 flex items-center gap-2">
-                <Instagram className="w-4 h-4" />
-                @byjose.ai
-              </p>
-            </div>
-
-            <p className="font-body text-white/75 text-lg leading-relaxed">
-              Creador de contenido, entusiasta de la IA y el tipo que lleva
-              meses obsesionado con una sola pregunta: ¿cómo puede un creador
-              solo producir contenido de agencia — sin agencia, sin equipo y sin
-              presupuesto?
-            </p>
-
-            <p className="font-body text-white/75 text-lg leading-relaxed">
-              Sistema Modo Creador es la respuesta que construí en vivo:
-              probando herramientas, quemando horas, cometiendo errores caros y
-              refinando cada paso hasta tener un proceso que funciona de
-              verdad.
-            </p>
-
-            <p className="font-body text-white/75 text-lg leading-relaxed">
-              No te voy a vender el sueño de hacerte rico en 30 días. Te voy a
-              dar el sistema exacto para que tengas tu primer video UGC con IA
-              listo en 72 horas — y tu primera marca pagada en las próximas
-              semanas.
-            </p>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 pt-2">
-              {[
-                { value: '47+', label: 'Estudiantes' },
-                { value: '9', label: 'Módulos' },
-                { value: '72h', label: 'Al primer video' },
-              ].map((stat, i) => (
-                <div key={i} className="text-center bg-white/[0.04] border border-white/10 rounded-xl py-4">
-                  <div className="font-heading font-black text-2xl text-green">{stat.value}</div>
-                  <div className="font-body text-white/50 text-xs mt-1">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </section>

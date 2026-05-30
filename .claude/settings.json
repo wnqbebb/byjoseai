@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -n '349p' \"C:\\\\Users\\\\Admin\\\\.claude\\\\projects\\\\c--Users-Admin-Documents-PROYECTOS-SANTIAGO-NO-TOCAR-AUSTRALIA-un-nuveo-mundo\\\\b2adee97-61b7-4736-9ea9-7c7ac9898ea2.jsonl\" 2>/dev/null | grep -o 'BONO #[1-7][^B]*' | head -40)",
+      "Read(//c/Users/Admin/.claude/projects/c--Users-Admin-Documents-PROYECTOS-SANTIAGO-NO-TOCAR-AUSTRALIA-un-nuveo-mundo/**)"
+    ]
+  }
+}

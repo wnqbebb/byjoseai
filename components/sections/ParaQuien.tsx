@@ -1,109 +1,101 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Check, X } from 'lucide-react'
+import { motion } from 'framer-motion'
 
-gsap.registerPlugin(ScrollTrigger)
-
-const siEsPara = [
-  'Creadores que quieren monetizar contenido sin depender de grabarse',
-  'Freelancers que buscan un servicio premium nuevo para ofrecer',
-  'Emprendedores con marca personal que necesitan contenido consistente',
-  'Personas que saben que la IA es el futuro y quieren adoptarla ya',
-  'Curiosos que han intentado IA antes pero sin un sistema claro',
-  'Alguien dispuesto a aplicar el sistema y no solo mirarlo',
+const noItems = [
+  'Buscas hacks mágicos para "ir viral en 1 día" sin trabajar.',
+  'No te interesa construir marca personal real.',
+  'Solo quieres más seguidores sin importar quiénes sean.',
+  'Crees que la IA te va a hacer todo por sí sola.',
+  'No estás dispuesta a darle 3–5 horas por semana al sistema.',
 ]
 
-const noEsPara = [
-  'Personas que buscan hacerse ricas sin trabajar',
-  'Quienes quieren resultados mágicos sin poner en práctica',
-  'Creadores que "ya saben todo de IA" y no quieren aprender',
-  'Alguien que no tiene 2–3 horas semanales para aplicar el sistema',
-  'Personas que esperan que el sistema funcione solo sin su participación',
+const siItems = [
+  'Tienes talento pero sientes que aún no destacas.',
+  'Quieres que tu contenido se vea profesional desde la primera publicación.',
+  'Quieres trabajar con marcas reales y cobrar como tal.',
+  'Estás lista para aprender IA como sistema — no como truco suelto.',
+  'Quieres trabajar desde casa con tu laptop o celular.',
+  'Crees en construir algo real, paso a paso, sin atajos falsos.',
 ]
 
 export default function ParaQuien() {
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.para-col',
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.para-grid',
-            start: 'top 80%',
-          },
-        }
-      )
-    }, sectionRef)
-    return () => ctx.revert()
-  }, [])
-
   return (
-    <section ref={sectionRef} className="relative py-24 md:py-32 px-4 overflow-hidden">
-      <div className="relative z-10 max-w-5xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="font-heading font-extrabold text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight">
-            ¿Es para ti?
-          </h2>
-          <p className="font-body text-white/60 text-lg mt-4">
-            Sé honesto contigo mismo antes de comprar.
-          </p>
-        </div>
+    <section className="py-20 lg:py-24" style={{ background: 'var(--navy-800)' }}>
+      <div className="container-base max-w-[1100px]">
+        <motion.h2
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+          className="font-heading font-bold text-white text-center mb-12"
+          style={{ fontSize: 'clamp(28px, 4vw, 40px)', lineHeight: 1.2 }}
+        >
+          ¿ES MODO CREADOR PARA TI?
+        </motion.h2>
 
-        <div className="para-grid grid md:grid-cols-2 gap-6">
-          {/* SÍ es para ti */}
-          <div className="para-col bg-green/5 border border-green/20 rounded-3xl p-8">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-8 h-8 rounded-full bg-green/20 flex items-center justify-center">
-                <Check className="w-4 h-4 text-green" />
-              </div>
-              <h3 className="font-heading font-bold text-2xl text-green">
-                Sí es para ti
-              </h3>
-            </div>
-            <ul className="space-y-4">
-              {siEsPara.map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <Check className="w-4 h-4 text-green flex-shrink-0 mt-0.5" />
-                  <span className="font-body text-white/75 text-base leading-relaxed">
-                    {item}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
+        <div className="grid lg:grid-cols-2 gap-6">
           {/* NO es para ti */}
-          <div className="para-col bg-red-500/5 border border-red-500/20 rounded-3xl p-8">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
-                <X className="w-4 h-4 text-red-400" />
-              </div>
-              <h3 className="font-heading font-bold text-2xl text-red-400">
-                No es para ti
-              </h3>
-            </div>
-            <ul className="space-y-4">
-              {noEsPara.map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <X className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
-                  <span className="font-body text-white/60 text-base leading-relaxed">
-                    {item}
-                  </span>
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="rounded-2xl p-8"
+            style={{
+              background: 'var(--navy-900)',
+              border: '1px solid rgba(239,68,68,0.3)',
+            }}
+          >
+            <p
+              className="font-heading font-bold mb-6"
+              style={{ color: '#EF4444', fontSize: 'clamp(20px, 2.5vw, 24px)' }}
+            >
+              ❌ ESTO NO ES PARA TI SI...
+            </p>
+            <ul className="flex flex-col gap-3">
+              {noItems.map((item, i) => (
+                <li
+                  key={i}
+                  className="font-body font-medium"
+                  style={{ color: 'rgba(255,255,255,0.85)', fontSize: '15px', lineHeight: 1.6 }}
+                >
+                  — {item}
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
+
+          {/* SÍ es para ti */}
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="rounded-2xl p-8"
+            style={{
+              background: 'var(--navy-900)',
+              border: '1px solid rgba(31,186,114,0.4)',
+            }}
+          >
+            <p
+              className="font-heading font-bold mb-6"
+              style={{ color: 'var(--green-500)', fontSize: 'clamp(20px, 2.5vw, 24px)' }}
+            >
+              ✅ ESTO SÍ ES PARA TI SI...
+            </p>
+            <ul className="flex flex-col gap-3">
+              {siItems.map((item, i) => (
+                <li
+                  key={i}
+                  className="font-body font-medium"
+                  style={{ color: 'rgba(255,255,255,0.85)', fontSize: '15px', lineHeight: 1.6 }}
+                >
+                  — {item}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
         </div>
       </div>
     </section>
