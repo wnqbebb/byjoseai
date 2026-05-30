@@ -98,7 +98,9 @@ export default function Bonos() {
           {bonos.map((bono, i) => (
             <div
               key={i}
-              className="bono-card card-hover relative rounded-2xl p-6 lg:p-8 flex flex-col"
+              className={`bono-card card-hover relative rounded-2xl p-6 lg:p-8 flex flex-col ${
+                i === 6 ? 'md:col-span-2 lg:col-span-1 lg:col-start-2 max-w-md md:max-w-xl lg:max-w-none mx-auto lg:mx-0 w-full' : ''
+              }`}
               style={{
                 background: 'var(--navy-900)',
                 border: '1px solid rgba(255,255,255,0.05)',
