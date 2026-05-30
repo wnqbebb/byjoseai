@@ -12,13 +12,16 @@ export default function SectionTransitionOverlay({
   return (
     <div
       className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden"
-      style={{ mixBlendMode: 'normal' }}
+      style={{
+        mixBlendMode: 'normal',
+        display: isTransitioning ? 'block' : 'none',
+      }}
     >
       {/* Orange foreground curtain pane */}
       <motion.div
-        initial={{ skewX: -15, x: '-120%' }}
+        initial={{ skewX: -15, x: '-200%' }}
         animate={{
-          x: isTransitioning ? '120%' : '-120%',
+          x: isTransitioning ? '200%' : '-200%',
         }}
         transition={{
           duration: 0.85,
@@ -26,16 +29,16 @@ export default function SectionTransitionOverlay({
         }}
         className="absolute inset-0 bg-[#FF6B35]"
         style={{
-          width: '120%',
+          width: '150%',
           transformOrigin: 'left bottom',
         }}
       />
 
       {/* Navy background curtain pane */}
       <motion.div
-        initial={{ skewX: -15, x: '-120%' }}
+        initial={{ skewX: -15, x: '-200%' }}
         animate={{
-          x: isTransitioning ? '120%' : '-120%',
+          x: isTransitioning ? '200%' : '-200%',
         }}
         transition={{
           duration: 0.85,
@@ -44,10 +47,10 @@ export default function SectionTransitionOverlay({
         }}
         className="absolute inset-0 bg-[#0A1628]"
         style={{
-          width: '120%',
+          width: '150%',
           transformOrigin: 'left bottom',
-          borderRight: '2px solid rgba(255, 107, 53, 0.2)',
-          boxShadow: '20px 0 80px rgba(0, 0, 0, 0.5)',
+          borderRight: '2px solid rgba(255, 107, 53, 0.3)',
+          boxShadow: '20px 0 80px rgba(0, 0, 0, 0.6)',
         }}
       />
     </div>
