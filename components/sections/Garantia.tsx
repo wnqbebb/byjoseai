@@ -1,70 +1,98 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { Check } from 'lucide-react'
 
 export default function Garantia() {
+
+  const power3Out: [number, number, number, number] = [0.22, 1, 0.36, 1]
+  const power2Out: [number, number, number, number] = [0.25, 1, 0.5, 1]
+
   return (
-    <section className="py-20 text-center" style={{ background: 'var(--navy-800)' }}>
-      <div className="container-base max-w-[700px]">
+    <section 
+      id="garantia" 
+      className="py-20 w-full relative overflow-hidden flex items-center justify-center select-none" 
+      style={{ backgroundColor: '#f5f1ea' }}
+    >
+      <div className="container-base max-w-[760px] w-full text-center relative z-10 px-5 lg:px-8">
+        
+        {/* Garantia Card container — cinematic scale */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="rounded-3xl p-10 lg:p-12"
+          initial={{ opacity: 0, y: 28, scale: 0.97 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: power2Out }}
+          className="bg-white border-2 border-[#006b5b]/42 rounded-[32px] p-[32px_24px] lg:p-[48px_52px] shadow-[0_24px_70px_rgba(16,24,32,0.10)] relative overflow-hidden flex flex-col items-center select-none"
           style={{
-            background: 'var(--navy-900)',
-            border: '2px solid var(--green-500)',
+            background: 'linear-gradient(180deg, #ffffff 0%, rgba(0,107,91,0.015) 100%)',
           }}
         >
-          {/* Sello verde */}
-          <div className="flex justify-center mb-6">
-            <div
-              className="w-20 h-20 rounded-full flex flex-col items-center justify-center"
-              style={{
-                background: 'rgba(31,186,114,0.15)',
-                border: '2px solid var(--green-500)',
-              }}
+          
+          {/* Sello Verde stamp — scales from 0.7 with slight rotation */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.7, rotate: -8 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.12, ease: power3Out }}
+            className="w-20 h-20 rounded-full bg-[#006b5b]/10 border-2 border-[#006b5b] flex flex-col items-center justify-center mb-6 relative select-none shrink-0"
+          >
+            <Check 
+              size={16} 
+              strokeWidth={2.5} 
+              className="text-[#006b5b] mb-0.5 select-none" 
+            />
+            <span 
+              className="font-heading font-extrabold text-[14px] text-[#006b5b] tracking-[0.04em] leading-none select-none"
             >
-              <span style={{ color: 'var(--green-500)', fontSize: '28px', lineHeight: 1 }}>✓</span>
-              <span
-                className="font-heading font-bold"
-                style={{ color: 'var(--green-500)', fontSize: '11px', letterSpacing: '0.04em', lineHeight: 1.2 }}
-              >
-                7 DÍAS
-              </span>
-            </div>
-          </div>
+              7 DÍAS
+            </span>
+          </motion.div>
 
-          <h2
-            className="font-heading font-bold text-white mb-6"
-            style={{ fontSize: 'clamp(24px, 3vw, 32px)', lineHeight: 1.2 }}
+          {/* H2 Title */}
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.08, ease: power3Out }}
+            className="font-heading font-extrabold text-[#101820] text-center mb-6 text-[24px] lg:text-[32px] leading-[1.15] select-none"
           >
             ENTRA SIN RIESGO. PRUÉBALO 7 DÍAS.
-          </h2>
+          </motion.h2>
 
-          <p
-            className="font-body mb-6 mx-auto"
-            style={{ color: 'var(--gray-400)', fontSize: '16px', lineHeight: 1.7, maxWidth: '560px' }}
+          {/* Cuerpo Text */}
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.14, ease: power3Out }}
+            className="font-body font-normal text-[16px] lg:text-[17px] leading-[1.7] mb-6 max-w-[600px] mx-auto select-none"
+            style={{ color: 'rgba(61, 44, 46, 0.82)' }}
           >
             Sé que decidir invertir da nervios. Por eso te doy 7 días para entrar, ver el sistema completo y aplicarlo. Si en 7 días sientes que esto no es para ti — me escribes y te devuelvo cada centavo. Sin trámites raros. Sin letra chica.
-          </p>
+          </motion.p>
 
-          <div>
-            <p
-              className="font-heading font-bold text-white"
-              style={{ fontSize: 'clamp(18px, 2.2vw, 22px)', lineHeight: 1.4 }}
-            >
+          {/* Cierre en Bold */}
+          <motion.div 
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2, ease: power3Out }}
+            className="text-center w-full select-none"
+          >
+            <p className="font-heading font-bold text-[#101820] text-[18px] lg:text-[22px] leading-[1.4] select-none">
               El verdadero riesgo no es entrar.
             </p>
-            <p
-              className="font-heading font-bold text-white"
-              style={{ fontSize: 'clamp(18px, 2.2vw, 22px)', lineHeight: 1.4 }}
-            >
-              El verdadero riesgo es seguir un mes más siendo invisible para las marcas.
+            <p className="font-heading font-bold text-[#101820] text-[18px] lg:text-[22px] leading-[1.4] mt-1 select-none">
+              El verdadero riesgo es{' '}
+              <span className="text-[#006b5b] font-extrabold select-none">
+                seguir un mes más siendo invisible
+              </span>{' '}
+              para las marcas.
             </p>
-          </div>
+          </motion.div>
+
         </motion.div>
+
       </div>
     </section>
   )

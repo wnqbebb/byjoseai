@@ -36,9 +36,9 @@ export default function Navbar() {
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          background: scrolled ? 'rgba(10,22,40,0.92)' : 'transparent',
+          background: scrolled ? 'rgba(245,241,234,0.92)' : 'transparent',
           backdropFilter: scrolled ? 'blur(16px)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(255,255,255,0.08)' : 'none',
+          borderBottom: scrolled ? '1px solid rgba(168,159,148,0.2)' : 'none',
           padding: scrolled ? '12px 0' : '20px 0',
         }}
       >
@@ -50,10 +50,10 @@ export default function Navbar() {
               e.preventDefault()
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }}
-            className="font-heading font-bold text-white"
+            className="font-heading font-bold text-navy-700"
             style={{ fontSize: '20px' }}
           >
-            byjose<span style={{ color: 'var(--yellow-500)' }}>.ai</span>
+            byjose<span style={{ color: '#006b5b' }}>.ai</span>
           </a>
 
           {/* Desktop nav */}
@@ -63,9 +63,9 @@ export default function Navbar() {
                 key={link.href}
                 onClick={() => handleNavClick(link.href)}
                 className="font-body transition-colors duration-200"
-                style={{ color: 'rgba(255,255,255,0.6)', fontSize: '14px' }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
+                style={{ color: 'rgba(16,24,32,0.6)', fontSize: '14px' }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--navy-700)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(16,24,32,0.6)')}
               >
                 {link.label}
               </button>
@@ -84,7 +84,7 @@ export default function Navbar() {
 
             <button
               className="md:hidden"
-              style={{ color: 'rgba(255,255,255,0.7)' }}
+              style={{ color: 'rgba(16,24,32,0.7)' }}
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Menu"
             >
@@ -102,9 +102,9 @@ export default function Navbar() {
           exit={{ opacity: 0 }}
           className="fixed top-[56px] left-0 right-0 z-40 py-6 px-5"
           style={{
-            background: 'rgba(10,22,40,0.97)',
+            background: 'rgba(245,241,234,0.97)',
             backdropFilter: 'blur(20px)',
-            borderBottom: '1px solid rgba(255,255,255,0.08)',
+            borderBottom: '1px solid rgba(168,159,148,0.2)',
           }}
         >
           <nav className="flex flex-col gap-4">
@@ -114,9 +114,9 @@ export default function Navbar() {
                 onClick={() => handleNavClick(link.href)}
                 className="font-body text-left py-2"
                 style={{
-                  color: 'rgba(255,255,255,0.8)',
+                  color: 'var(--navy-700)',
                   fontSize: '18px',
-                  borderBottom: '1px solid rgba(255,255,255,0.06)',
+                  borderBottom: '1px solid rgba(168,159,148,0.15)',
                 }}
               >
                 {link.label}

@@ -1,203 +1,286 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useLenis } from '@/lib/lenis-provider'
 import { trackPixelEvent } from '@/components/analytics/meta-pixel'
 
-const rows = [
-  { before: 'Pasas horas grabando y editando', after: 'Produces contenido en minutos con IA' },
-  { before: 'Tu feed se ve "amateur"', after: 'Tu feed parece campaña de marca grande' },
-  { before: 'Ninguna marca te escribe', after: 'Marcas reales te contactan o respondes outreach' },
-  { before: 'Cero ingresos de redes', after: 'Primera colaboración paga en 30 días' },
-  { before: 'Improvisas cada publicación', after: 'Tienes un sistema replicable que corre solo' },
-  { before: 'Te sientes invisible y atrasado', after: 'Te sientes profesional, seguro, en control' },
+const beforeItems = [
+  'Pasas horas grabando y editando',
+  'Tu feed se ve "amateur"',
+  'Ninguna marca te escribe',
+  'Cero ingresos de redes',
+  'Improvisas cada publicación',
+  'Te sientes invisible y atrasado',
+]
+
+const afterItems = [
+  'Produces contenido en minutos con IA',
+  'Tu feed parece campaña de marca grande',
+  'Marcas reales te contactan o respondes outreach',
+  'Primera colaboración paga en 30 días',
+  'Tienes un sistema replicable que corre solo',
+  'Te sientes profesional, seguro, en control',
 ]
 
 const notifications = [
-  { emoji: '💬', text: '"Hola, vimos tu contenido. ¿Cuál es tu tarifa para una colaboración?"' },
-  { emoji: '💵', text: '"Pago recibido: $350 USD — Marca XYZ"' },
-  { emoji: '📈', text: '"+247 nuevos seguidores hoy"' },
-  { emoji: '📩', text: '"Quiero entrar a tu sistema, ¿cómo me uno?"' },
+  {
+    emoji: '💬',
+    message: '💬 "Hola, vimos tu contenido. ¿Cuál es tu tarifa para una colaboración?"',
+    bg: 'rgba(255,255,255,0.10)',
+  },
+  {
+    emoji: '💵',
+    message: '💵 "Pago recibido: $350 USD — Marca XYZ"',
+    bg: 'rgba(0,107,91,0.16)',
+  },
+  {
+    emoji: '📈',
+    message: '📈 "+247 nuevos seguidores hoy"',
+    bg: 'rgba(255,205,0,0.16)',
+  },
+  {
+    emoji: '📩',
+    message: '📩 "Quiero entrar a tu sistema, ¿cómo me uno?"',
+    bg: 'rgba(255,255,255,0.10)',
+  },
 ]
 
 export default function Transformacion() {
   const { scrollTo } = useLenis()
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768)
+    const handleResize = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const handleCTAClick = () => {
     trackPixelEvent('Lead', { cta_location: 'Transformacion' })
     scrollTo('#precio')
   }
 
+  const power3Out: [number, number, number, number] = [0.22, 1, 0.36, 1]
+  const power2Out: [number, number, number, number] = [0.25, 1, 0.5, 1]
+
+  // Container for list items — stagger
+  const listContainer = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.07, delayChildren: 0.1 }
+    }
+  }
+
+  const listItem = (direction: 'left' | 'right') => ({
+    hidden: { opacity: 0, x: direction === 'left' ? -14 : 14 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.4, ease: power2Out }
+    }
+  })
+
   return (
-    <section className="py-20 lg:py-28" style={{ backgroundColor: 'var(--navy-900)' }}>
-      <div className="container-base" style={{ maxWidth: '1100px' }}>
+    <section
+      className="py-20 lg:py-24 w-full relative overflow-hidden flex items-center justify-center"
+      style={{ backgroundColor: '#101820' }}
+    >
+      {/* Subtle dot pattern */}
+      <div className="absolute inset-0 pointer-events-none dot-pattern-dark" />
+
+      <div className="container-base max-w-[1100px] w-full text-center relative z-10 px-5 lg:px-8">
+        
+        {/* H2 Title */}
         <motion.h2
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="text-h2 text-white text-center mb-16 uppercase"
-          style={{ fontFamily: 'var(--font-display)', fontWeight: 700 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, delay: 0.05, ease: power3Out }}
+          className="font-heading font-extrabold text-white text-center mb-16 text-[28px] lg:text-[44px] leading-[1.12] lg:leading-[1.15] tracking-[-0.01em] max-w-[850px] mx-auto select-none"
         >
           ESTO ES LO QUE VA A CAMBIAR EN LOS PRÓXIMOS 30 DÍAS
         </motion.h2>
 
-        {/* Before/After responsive layout */}
-        <div className="grid md:grid-cols-2 gap-x-6 gap-y-6 mb-20">
-          {/* Desktop Headers (hidden on mobile) */}
-          <div className="hidden md:block pb-4" style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-            <p style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: 'var(--gray-400)', fontSize: 'clamp(18px, 2.5vw, 22px)' }}>
-              ANTES de Modo Creador 😩
-            </p>
-          </div>
-          <div className="hidden md:block pb-4" style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-            <p style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: 'var(--orange-500)', fontSize: 'clamp(18px, 2.5vw, 22px)' }}>
-              DESPUÉS de Modo Creador 🔥
-            </p>
-          </div>
-
-          {/* Rows (Interleaved for mobile and desktop naturally) */}
-          {rows.map((row, i) => (
-            <div key={i} className="col-span-1 md:col-span-2 grid md:grid-cols-2 gap-4">
-              {/* BEFORE block */}
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
-                viewport={{ once: true }}
-                className="p-5 rounded-2xl flex flex-col justify-center bg-[rgba(255,255,255,0.01)]"
-                style={{ border: '1px solid rgba(255,255,255,0.04)' }}
-              >
-                <div
-                  className="md:hidden font-bold text-[11px] tracking-[0.15em] uppercase mb-2"
-                  style={{ fontFamily: 'var(--font-body)', color: 'var(--gray-400)' }}
-                >
-                  😩 ANTES
-                </div>
-                <p style={{ fontFamily: 'var(--font-body)', fontWeight: 500, color: 'var(--gray-400)', fontSize: 'clamp(15px, 1.8vw, 17px)', lineHeight: 1.55 }}>
-                  {row.before}
-                </p>
-              </motion.div>
-
-              {/* AFTER block */}
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.05 + 0.02 }}
-                viewport={{ once: true }}
-                className="p-5 rounded-2xl flex flex-col justify-center"
-                style={{
-                  border: '1px solid rgba(255, 107, 53, 0.25)',
-                  background: 'rgba(255, 107, 53, 0.02)',
-                }}
-              >
-                <div
-                  className="md:hidden font-bold text-[11px] tracking-[0.15em] uppercase mb-2"
-                  style={{ fontFamily: 'var(--font-body)', color: 'var(--orange-500)' }}
-                >
-                  🔥 DESPUÉS
-                </div>
-                <p style={{ fontFamily: 'var(--font-body)', fontWeight: 600, color: '#FFFFFF', fontSize: 'clamp(15px, 1.8vw, 17px)', lineHeight: 1.55 }}>
-                  {row.after}
-                </p>
-              </motion.div>
+        {/* Antes vs Después Grid */}
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 w-full mx-auto mb-20 text-left">
+          
+          {/* Columna ANTES — slides in from left on desktop */}
+          <motion.div
+            initial={{ opacity: 0, x: isMobile ? 0 : -24, y: isMobile ? 20 : 0 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7, delay: 0.1, ease: power3Out }}
+            className="flex flex-col w-full"
+          >
+            <div className="pb-4 border-b border-white/10 mb-6">
+              <h3 className="font-heading font-bold text-[18px] lg:text-[22px] text-[#a89f94]">
+                ANTES de Modo Creador 😩
+              </h3>
             </div>
-          ))}
+
+            <motion.div
+              variants={listContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-60px' }}
+              className="flex flex-col gap-3"
+            >
+              {beforeItems.map((texto, i) => (
+                <motion.div
+                  key={i}
+                  variants={listItem('left')}
+                  className="p-4 lg:p-5 rounded-2xl bg-white/[0.035] border border-white/[0.07] min-h-[56px] flex items-center"
+                >
+                  <p className="font-body font-medium leading-[1.45] text-[15px] lg:text-[17px] text-[#a89f94]">
+                    {texto}
+                  </p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Columna DESPUÉS — slides in from right on desktop */}
+          <motion.div
+            initial={{ opacity: 0, x: isMobile ? 0 : 24, y: isMobile ? 20 : 0 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7, delay: 0.15, ease: power3Out }}
+            className="flex flex-col w-full"
+          >
+            <div className="pb-4 border-b border-[#006b5b]/35 mb-6">
+              <h3 className="font-heading font-bold text-[18px] lg:text-[22px] text-white">
+                DESPUÉS de Modo Creador 🔥
+              </h3>
+            </div>
+
+            <motion.div
+              variants={listContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-60px' }}
+              className="flex flex-col gap-3"
+            >
+              {afterItems.map((texto, i) => (
+                <motion.div
+                  key={i}
+                  variants={listItem('right')}
+                  className="p-4 lg:p-5 rounded-2xl bg-[rgba(0,107,91,0.10)] border border-[rgba(0,107,91,0.30)] min-h-[56px] flex items-center"
+                >
+                  <p className="font-body font-medium leading-[1.45] text-[15px] lg:text-[17px] text-white">
+                    {texto}
+                  </p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+
         </div>
 
-        {/* iPhone mockup */}
+        {/* Custom iPhone Mockup — cinematic scale entrance */}
         <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="flex flex-col items-center"
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.9, delay: 0.15, ease: power3Out }}
+          className="flex flex-col items-center mt-20"
         >
-          {/* Glow behind phone */}
-          <div className="relative">
-            <div
-              className="absolute inset-0 rounded-[3rem]"
-              style={{
-                background: 'radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%)',
-                filter: 'blur(40px)',
-                transform: 'scale(1.3)',
-              }}
-            />
-            <div
-              className="relative w-[280px] md:w-[340px] lg:w-[380px] rounded-[3rem] p-4"
-              style={{
-                backgroundColor: 'var(--navy-800)',
-                border: '1px solid rgba(255,107,53,0.3)',
-                boxShadow: '0 30px 60px rgba(0,0,0,0.5)',
-              }}
-            >
-              {/* Notch */}
-              <div className="flex justify-center mb-3">
-                <div className="w-20 h-6 bg-black rounded-full" />
-              </div>
-              {/* Notifications */}
-              <div
-                className="rounded-[2rem] p-3 flex flex-col gap-3"
-                style={{ background: 'linear-gradient(180deg, #0A1628 0%, #050B16 100%)' }}
-              >
-                {notifications.map((n, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: 0.3 + i * 0.15 }}
-                    viewport={{ once: true }}
-                    className="flex items-center gap-3 rounded-2xl p-4"
-                    style={{
-                      background: 'rgba(255,255,255,0.06)',
-                      backdropFilter: 'blur(8px)',
-                      border: '1px solid rgba(255,255,255,0.04)',
-                    }}
-                  >
-                    <span style={{ fontSize: '24px', lineHeight: 1 }}>{n.emoji}</span>
-                    <p
-                      style={{
-                        fontFamily: 'var(--font-body)',
-                        fontWeight: 500,
-                        color: '#FFFFFF',
-                        fontSize: '13px',
-                        lineHeight: 1.4,
+          {/* Glass Phone Shell */}
+          <div className="relative w-full max-w-[320px] lg:max-w-[420px] aspect-[9/18.8] rounded-[3rem] p-3.5 lg:p-4 bg-[#121e2b] border border-[#a89f94]/22 shadow-[0_24px_60px_rgba(16,24,32,0.2),_0_0_40px_rgba(0,107,91,0.04)]">
+            
+            {/* Inner Screen */}
+            <div className="h-full w-full rounded-[2rem] bg-gradient-to-b from-[#101820] to-[#05070a] p-4 lg:p-[22px] relative overflow-hidden flex flex-col justify-between select-none">
+              
+              <div>
+                {/* Dynamic Island Notch */}
+                <div className="w-[72px] h-[20px] rounded-full bg-[#05070a] mx-auto mb-[24px] flex items-center justify-between px-3 border border-white/5" />
+
+                {/* Clock Status Header */}
+                <div className="text-center text-white/50 font-semibold mb-1 text-[9px] tracking-[0.12em] uppercase font-body">
+                  sábado, 30 de mayo
+                </div>
+                <div className="text-center text-white/95 font-medium mb-6 text-3xl tracking-tight" style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}>
+                  08:20
+                </div>
+
+                {/* Notifications Stack — staggered */}
+                <motion.div
+                  variants={{
+                    hidden: {},
+                    visible: { transition: { staggerChildren: 0.14, delayChildren: 0.3 } }
+                  }}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: '-60px' }}
+                  className="flex flex-col gap-[10px]"
+                >
+                  {notifications.map((n, i) => (
+                    <motion.div
+                      key={i}
+                      variants={{
+                        hidden: { opacity: 0, y: 18, scale: 0.96 },
+                        visible: {
+                          opacity: 1,
+                          y: 0,
+                          scale: 1,
+                          transition: { duration: 0.5, ease: power2Out }
+                        }
                       }}
+                      className="flex items-start gap-3 rounded-[18px] p-4 bg-white/[0.08] backdrop-blur-[12px] border border-white/[0.08] text-left"
                     >
-                      {n.text}
-                    </p>
-                  </motion.div>
-                ))}
+                      {/* Icon Circle */}
+                      <div
+                        className="w-8 h-8 rounded-full flex items-center justify-center text-[16px] flex-shrink-0"
+                        style={{ backgroundColor: n.bg }}
+                      >
+                        {n.emoji}
+                      </div>
+
+                      {/* Notification Message Text */}
+                      <p className="font-body font-medium leading-[1.35] text-[13px] text-white pt-1">
+                        {n.message}
+                      </p>
+                    </motion.div>
+                  ))}
+                </motion.div>
               </div>
-              {/* Home bar */}
-              <div className="flex justify-center mt-3">
-                <div className="w-24 h-1.5 rounded-full" style={{ background: 'rgba(255,255,255,0.2)' }} />
-              </div>
+
+              {/* Bottom Home Indicator Bar */}
+              <div className="w-24 h-1 rounded-full bg-white/20 mx-auto mt-4" />
             </div>
+
           </div>
 
-          {/* Cierre */}
-          <p
-            className="text-center mt-12"
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontWeight: 400,
-              color: 'var(--gray-400)',
-              fontSize: 'clamp(16px, 2vw, 18px)',
-              lineHeight: 1.6,
-              maxWidth: '600px',
-            }}
+          {/* Cierre debajo del mockup */}
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.1, ease: power3Out }}
+            className="font-body font-normal text-[16px] lg:text-[18px] text-[#a89f94] text-center max-w-[600px] mt-12 mx-auto leading-[1.6]"
           >
             Esto no es una promesa vacía. Es lo que pasa cuando dejas de improvisar y empiezas a aplicar un sistema probado.
-          </p>
+          </motion.p>
 
           {/* CTA */}
-          <div className="mt-8">
-            <button onClick={handleCTAClick} className="btn-cta">
+          <motion.div
+            initial={{ opacity: 0, y: 16, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.15, ease: power3Out }}
+            className="mt-8 w-full flex justify-center"
+          >
+            <button
+              onClick={handleCTAClick}
+              className="w-full lg:w-auto px-8 py-5 lg:px-10 lg:py-6 rounded-[16px] bg-[#006b5b] text-white font-body font-bold text-[16px] lg:text-[18px] uppercase tracking-[0.03em] hover:shadow-[0_12px_40px_rgba(0,107,91,0.22)] hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-200 ease-out border border-transparent select-none cursor-pointer block text-center"
+            >
               QUIERO ACCEDER AL SISTEMA →
             </button>
-          </div>
+          </motion.div>
+
         </motion.div>
+
       </div>
     </section>
   )

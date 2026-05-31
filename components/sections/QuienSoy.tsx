@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 
 export default function QuienSoy() {
+  const power3Out: [number, number, number, number] = [0.22, 1, 0.36, 1]
+
   return (
     <section className="py-20 lg:py-28" style={{ background: 'var(--navy-900)' }}>
       <div className="container-base max-w-[1100px]">
@@ -10,9 +12,9 @@ export default function QuienSoy() {
 
           {/* Columna izquierda — foto */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
+            initial={{ opacity: 0, x: -28, scale: 0.97 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 0.75, ease: power3Out }}
             viewport={{ once: true }}
             className="flex justify-center lg:justify-start"
           >
@@ -20,14 +22,14 @@ export default function QuienSoy() {
             <div
               className="relative w-[240px] h-[240px] lg:w-[360px] lg:h-[360px] rounded-full overflow-hidden group flex flex-col items-center justify-center"
               style={{
-                border: '4px dashed var(--orange-500)',
-                background: 'linear-gradient(135deg, rgba(15,30,51,0.6) 0%, rgba(22,40,69,0.8) 100%)',
-                boxShadow: '0 20px 60px rgba(255,107,53,0.15)',
+                border: '4px dashed #006b5b',
+                background: 'var(--navy-800)',
+                boxShadow: '0 20px 60px rgba(16,24,32,0.06)',
               }}
             >
               {/* Profile icon */}
               <svg
-                className="w-16 h-16 text-orange-500/40 mb-3 transition-transform duration-500 group-hover:scale-110"
+                className="w-16 h-16 text-[#006b5b]/40 mb-3 transition-transform duration-500 group-hover:scale-110"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1.5"
@@ -42,7 +44,7 @@ export default function QuienSoy() {
               </svg>
               <span
                 className="font-heading font-bold tracking-wider uppercase text-xs"
-                style={{ color: 'var(--orange-500)', opacity: 0.8 }}
+                style={{ color: '#006b5b', opacity: 0.8 }}
               >
                 AVATAR JOSÉ DÍAZ
               </span>
@@ -53,11 +55,11 @@ export default function QuienSoy() {
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
+            transition={{ duration: 0.7, delay: 0.12, ease: power3Out }}
             viewport={{ once: true }}
           >
             <h2
-              className="font-heading font-bold text-white mb-6"
+              className="font-heading font-bold text-navy-700 mb-6"
               style={{ fontSize: 'clamp(24px, 3vw, 36px)', lineHeight: 1.2 }}
             >
               ¿QUIÉN SOY Y POR QUÉ PUEDO ENSEÑARTE ESTO? 👋
@@ -76,26 +78,26 @@ export default function QuienSoy() {
                 Soy una persona que descubrió cómo usar IA de forma simple, visual y estratégica para crear contenido que destaca en redes — y ahora enseño exactamente eso.
               </p>
               <p className="font-body mb-4">
-                Empecé como muchos de ustedes: con ganas, sin claridad, viendo creadores grandes y sintiendo que iba tarde.
+                Empecé como muchas de ustedes: con ganas, sin claridad, viendo creadoras grandes y sintiendo que iba tarde.
               </p>
               <p className="font-body mb-4">
                 Hasta que entendí algo clave:
               </p>
               <p
-                className="font-heading font-bold text-white mb-4"
+                className="font-heading font-bold text-navy-700 mb-4"
                 style={{ fontSize: 'clamp(20px, 2vw, 22px)', lineHeight: 1.3 }}
               >
                 El problema nunca fue el talento. Fue no tener un sistema.
               </p>
               <p className="font-body mb-4">
-                Hoy ayudo a creadores pequeños a verse profesionales, construir autoridad y cobrar como marcas — usando IA como su equipo de producción.
+                Hoy ayudo a creadoras pequeñas a verse profesionales, construir autoridad y cobrar como marcas — usando IA como su equipo de producción.
               </p>
               <p className="font-body mb-4">
                 Hago esto por un propósito más grande que yo:{' '}
-                <strong className="font-heading font-bold text-white" style={{ fontSize: 'clamp(20px, 2vw, 22px)' }}>mis papás y mi esposo Mañungo</strong>. Por ellos no paro. Y por eso este sistema existe — para que tú también puedas construir algo real, sin depender de equipos caros ni de años de experiencia.
+                <strong className="font-heading font-bold text-navy-700" style={{ fontSize: 'clamp(20px, 2vw, 22px)' }}>mis papás y mi esposo Mañungo</strong>. Por ellos no paro. Y por eso este sistema existe — para que tú también puedas construir algo real, sin depender de equipos caros ni de años de experiencia.
               </p>
               <p
-                className="font-heading font-bold text-white"
+                className="font-heading font-bold text-navy-700"
                 style={{ fontSize: 'clamp(20px, 2vw, 22px)', lineHeight: 1.3 }}
               >
                 Si yo pude, tú puedes. Solo necesitas el orden correcto.

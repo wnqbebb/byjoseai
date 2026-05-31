@@ -1,13 +1,8 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useLenis } from '@/lib/lenis-provider'
 import { trackPixelEvent } from '@/components/analytics/meta-pixel'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const modulos = [
   {
@@ -67,7 +62,6 @@ const modulos = [
 ]
 
 export default function Modulos() {
-  const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollTo } = useLenis()
 
   const handleCTAClick = () => {
@@ -75,103 +69,119 @@ export default function Modulos() {
     scrollTo('#precio')
   }
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.modulo-card',
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.07,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '.modulos-grid',
-            start: 'top 80%',
-          },
-        }
-      )
-    }, sectionRef)
-    return () => ctx.revert()
-  }, [])
+  const power3Out: [number, number, number, number] = [0.22, 1, 0.36, 1]
+  const power2Out: [number, number, number, number] = [0.25, 1, 0.5, 1]
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.07 }
+    }
+  }
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 28, scale: 0.97 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.55, ease: power2Out }
+    }
+  }
 
   return (
-    <section ref={sectionRef} className="py-20 lg:py-28" style={{ background: 'var(--navy-900)' }}>
-      <div className="container-base max-w-[1200px]">
+    <section
+      id="modulos"
+      className="py-20 lg:py-24 w-full relative overflow-hidden flex items-center justify-center"
+      style={{ backgroundColor: '#f5f1ea' }}
+    >
+      <div className="container-base max-w-[1200px] w-full text-center relative z-10 px-5 lg:px-8">
+        
+        {/* H2 Title */}
         <motion.h2
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="font-heading font-bold text-white text-center mb-16 text-h2"
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.65, delay: 0.05, ease: power3Out }}
+          className="font-heading font-extrabold text-[#101820] text-center mb-16 text-[28px] lg:text-[44px] leading-[1.12] lg:leading-[1.15] tracking-[-0.01em] max-w-[850px] mx-auto select-none"
         >
           ESTO ES LO QUE VAS A DESBLOQUEAR ADENTRO 🔓
         </motion.h2>
 
-        <div className="modulos-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* 9-Modules Responsive Grid — stagger */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
+        >
           {modulos.map((mod, i) => (
-            <div
+            <motion.div
               key={i}
-              className="modulo-card card-hover relative rounded-2xl p-6 lg:p-8 flex flex-col"
-              style={{
-                background: 'var(--navy-800)',
-                border: '1px solid rgba(255,255,255,0.05)',
-                minHeight: '380px',
-                transition: 'border-color 300ms, box-shadow 300ms',
-              }}
+              variants={cardVariants}
+              className="bg-white border border-[#a89f94]/26 rounded-[24px] p-6 lg:p-8 flex flex-col text-left shadow-[0_8px_30px_rgba(16,24,32,0.015)] card-hover group"
+              style={{ minHeight: '380px' }}
             >
+              {/* Number — large, faded */}
               <div
-                className="font-heading font-bold mb-4 select-none"
-                style={{ fontSize: '56px', color: 'var(--orange-500)', opacity: 0.4, lineHeight: 1 }}
+                className="font-heading font-extrabold mb-4 select-none text-[56px] text-[#006b5b] leading-[0.9] opacity-[0.35] group-hover:opacity-[0.55] transition-opacity duration-300"
               >
                 {mod.num}
               </div>
-              <h3
-                className="font-heading font-bold text-white mb-2"
-                style={{ fontSize: '22px', lineHeight: 1.2 }}
-              >
+
+              {/* Title */}
+              <h3 className="font-heading font-bold text-[#101820] mb-2 text-[22px] leading-[1.15]">
                 {mod.title}
               </h3>
-              <p
-                className="font-body italic mb-4"
-                style={{ color: 'var(--orange-500)', fontSize: '14px', fontWeight: 500 }}
-              >
+
+              {/* Subtitle */}
+              <p className="font-body font-medium italic text-[#006b5b] mb-4 text-[14px] leading-[1.4]">
                 {mod.subtitle}
               </p>
+
+              {/* Description */}
               <p
-                className="font-body"
-                style={{ color: 'var(--gray-400)', fontSize: '15px', lineHeight: 1.6 }}
+                className="font-body font-normal text-[15px] leading-[1.6]"
+                style={{ color: 'rgba(61, 44, 46, 0.82)' }}
               >
                 {mod.desc}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="text-center mt-16">
-          <motion.p
+        {/* Cierre */}
+        <div className="text-center mt-16 flex flex-col items-center">
+          <motion.h4
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="font-heading font-bold text-white mx-auto"
-            style={{ fontSize: 'clamp(20px, 3vw, 26px)', lineHeight: 1.3, maxWidth: '800px' }}
+            transition={{ duration: 0.6, delay: 0.1, ease: power3Out }}
+            className="font-heading font-bold text-[#101820] max-w-[800px] mx-auto text-[20px] lg:text-[26px] leading-[1.35]"
           >
-            9 módulos. Un orden exacto. Una transformación: de creador invisible → a creador con marca propia y marcas pagándote.
-          </motion.p>
+            9 módulos. Un orden exacto. Una transformación:{' '}
+            <span className="text-[#006b5b]">de creador invisible → a creador con marca propia</span>{' '}
+            y marcas pagándote.
+          </motion.h4>
+
+          {/* CTA */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            initial={{ opacity: 0, y: 16, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true }}
-            className="mt-8"
+            transition={{ duration: 0.55, delay: 0.15, ease: power3Out }}
+            className="mt-8 w-full flex justify-center"
           >
-            <button onClick={handleCTAClick} className="btn-cta">
+            <button
+              onClick={handleCTAClick}
+              className="w-full lg:w-auto px-8 py-5 lg:px-10 lg:py-6 rounded-[16px] bg-[#006b5b] text-white font-body font-bold text-[16px] lg:text-[18px] uppercase tracking-[0.03em] hover:shadow-[0_12px_40px_rgba(0,107,91,0.22)] hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-200 ease-out border border-transparent select-none cursor-pointer block text-center"
+            >
               EMPEZAR MODO CREADOR →
             </button>
           </motion.div>
         </div>
+
       </div>
     </section>
   )

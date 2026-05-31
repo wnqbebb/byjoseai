@@ -17,7 +17,7 @@ export default function SectionTransitionOverlay({
         display: isTransitioning ? 'block' : 'none',
       }}
     >
-      {/* Orange foreground curtain pane */}
+      {/* Brand green foreground curtain pane */}
       <motion.div
         initial={{ skewX: -15, x: '-200%' }}
         animate={{
@@ -27,7 +27,7 @@ export default function SectionTransitionOverlay({
           duration: 0.85,
           ease: [0.76, 0, 0.24, 1], // Custom cubic-bezier matching premium transitions
         }}
-        className="absolute inset-0 bg-[#FF6B35]"
+        className="absolute inset-0 bg-[#006b5b]"
         style={{
           width: '150%',
           transformOrigin: 'left bottom',
@@ -45,11 +45,11 @@ export default function SectionTransitionOverlay({
           delay: 0.08, // Subtle stagger for layered depth
           ease: [0.76, 0, 0.24, 1],
         }}
-        className="absolute inset-0 bg-[#0A1628]"
+        className="absolute inset-0 bg-[#101820]"
         style={{
           width: '150%',
           transformOrigin: 'left bottom',
-          borderRight: '2px solid rgba(255, 107, 53, 0.3)',
+          borderRight: '2px solid rgba(255, 205, 0, 0.3)',
           boxShadow: '20px 0 80px rgba(0, 0, 0, 0.6)',
         }}
       />

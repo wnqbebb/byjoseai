@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const dolores = [
   'Tienes talento. Lo sabes. La gente cercana te lo dice.',
@@ -13,66 +14,112 @@ const dolores = [
 ]
 
 export default function Dolor() {
+
+  const power3Out: [number, number, number, number] = [0.22, 1, 0.36, 1]
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.12, delayChildren: 0.2 }
+    }
+  }
+
+  const dolorItem = {
+    hidden: { opacity: 0, y: 16 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.55, ease: power3Out }
+    }
+  }
+
   return (
-    <section className="py-20 lg:py-28" style={{ backgroundColor: 'var(--navy-900)' }}>
-      <div className="container-base" style={{ maxWidth: '800px' }}>
-        {/* H2 */}
-        <motion.h2
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+    <section
+      className="py-20 lg:py-28 w-full relative overflow-hidden flex items-center justify-center section-divider-dark-light"
+      style={{ backgroundColor: '#101820' }}
+    >
+      {/* Ultra subtle dot grid on dark */}
+      <div className="absolute inset-0 pointer-events-none dot-pattern-dark" />
+
+      <div className="container-base max-w-[800px] w-full text-center relative z-10 px-5 lg:px-8">
+        
+        {/* Dolor asset — spotlight integrado con fondo #101820 */}
+        <motion.div
+          initial={{ opacity: 0, y: 10, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
-          className="text-h2 text-white text-center mb-12 uppercase"
-          style={{ fontFamily: 'var(--font-display)', fontWeight: 700 }}
+          transition={{ duration: 0.8, delay: 0.05, ease: power3Out }}
+          className="w-[140px] lg:w-[200px] mx-auto mb-7 lg:mb-8 pointer-events-none"
+          style={{
+            maskImage: 'radial-gradient(ellipse 82% 78% at 50% 50%, black 30%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 82% 78% at 50% 50%, black 30%, transparent 100%)',
+          }}
+        >
+          <Image
+            src="/dolor-spotlight.png"
+            alt="Spotlight tenue sobre un espacio vacío, representando invisibilidad"
+            width={800}
+            height={800}
+            style={{
+              width: '100%',
+              height: 'auto',
+              objectFit: 'contain',
+              objectPosition: 'center',
+              display: 'block',
+              mixBlendMode: 'screen',
+              opacity: 0.92,
+            }}
+          />
+        </motion.div>
+
+        {/* H2 Title — sobria, arrives first */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.65, delay: 0.1, ease: power3Out }}
+          className="font-heading font-bold tracking-[-0.01em] uppercase text-white mb-12 text-[28px] lg:text-[44px] leading-tight"
         >
           SEAMOS HONESTOS
         </motion.h2>
 
-        {/* 7 dolores */}
-        <div className="flex flex-col">
+        {/* 7 dolores — slower stagger, each line hits like a blow */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="flex flex-col gap-6 w-full"
+        >
           {dolores.map((texto, i) => (
             <motion.p
               key={i}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              viewport={{ once: true }}
-              className="text-center mb-6"
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontWeight: 500,
-                fontSize: 'clamp(18px, 2.5vw, 22px)',
-                color: 'rgba(255,255,255,0.85)',
-                lineHeight: 1.5,
-              }}
+              variants={dolorItem}
+              className="font-body font-medium leading-[1.5] text-[18px] lg:text-[22px]"
+              style={{ color: 'rgba(255, 255, 255, 0.85)' }}
             >
               {texto}
             </motion.p>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Cierre dramático */}
+        {/* Cierre dramático — enters with more visual weight */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.15, ease: power3Out }}
           className="mt-16 pt-12 text-center"
-          style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}
+          style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}
         >
-          <p
-            className="text-center"
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 700,
-              color: 'var(--yellow-500)',
-              fontSize: 'clamp(24px, 3.5vw, 36px)',
-              lineHeight: 1.3,
-            }}
+          <h3
+            className="font-heading font-bold leading-[1.3] text-[24px] lg:text-[36px]"
+            style={{ color: '#ffcd00' }}
           >
             No es tu talento. Es que nadie te enseñó el sistema correcto.
-          </p>
+          </h3>
         </motion.div>
+
       </div>
     </section>
   )

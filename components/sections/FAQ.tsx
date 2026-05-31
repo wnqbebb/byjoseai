@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 
+// Wording from the instructions (gender-neutralized)
 const faqs = [
   {
     q: '¿Funciona si soy 100% principiante en IA?',
@@ -50,68 +51,94 @@ const faqs = [
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null)
 
+  const power3Out: [number, number, number, number] = [0.22, 1, 0.36, 1]
+
   return (
-    <section className="py-20 lg:py-28" style={{ background: 'var(--navy-900)' }}>
-      <div className="container-base max-w-[800px]">
+    <section 
+      id="faq" 
+      className="py-20 lg:py-24 w-full relative overflow-hidden flex items-center justify-center select-none" 
+      style={{ backgroundColor: '#f5f1ea' }}
+    >
+      <div className="container-base max-w-[800px] w-full text-center relative z-10 px-5 lg:px-8">
+        
+        {/* H2 Title */}
         <motion.h2
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="font-heading font-bold text-white text-center mb-12 text-h2"
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.65, delay: 0.05, ease: power3Out }}
+          className="font-heading font-extrabold text-[#101820] text-center mb-12 text-[28px] lg:text-[40px] leading-[1.2] tracking-[-0.01em] select-none"
         >
           PREGUNTAS FRECUENTES
         </motion.h2>
 
-        <div className="flex flex-col">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}
-            >
-              <button
-                className="w-full flex items-center justify-between gap-4 py-5 text-left"
-                onClick={() => setOpen(open === i ? null : i)}
-                aria-expanded={open === i}
+        {/* Accordion Container — scale entrance */}
+        <motion.div
+          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, delay: 0.08, ease: power3Out }}
+          className="bg-white border border-[#a89f94]/28 rounded-[28px] p-2 px-[18px] lg:p-2.5 lg:px-7 shadow-[0_4px_30px_rgba(16,24,32,0.015)] text-left select-none"
+        >
+          {faqs.map((faq, i) => {
+            const isLast = i === faqs.length - 1
+            const isOpen = open === i
+            
+            return (
+              <div
+                key={i}
+                className={`${isLast ? 'border-b-0' : 'border-b border-[#a89f94]/22'} select-none`}
               >
-                <span
-                  className="font-heading font-bold text-white"
-                  style={{ fontSize: 'clamp(17px, 2vw, 19px)', lineHeight: 1.3 }}
+                {/* Accordion trigger button */}
+                <button
+                  className="w-full flex items-center justify-between gap-4 py-5 text-left group select-none transition-colors duration-200"
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  aria-expanded={isOpen}
                 >
-                  {faq.q}
-                </span>
-                <ChevronDown
-                  className="flex-shrink-0 transition-transform duration-300"
-                  style={{
-                    color: 'rgba(255,255,255,0.5)',
-                    width: '20px',
-                    height: '20px',
-                    transform: open === i ? 'rotate(180deg)' : 'rotate(0deg)',
-                  }}
-                />
-              </button>
-
-              <AnimatePresence initial={false}>
-                {open === i && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: 'easeInOut' }}
-                    className="overflow-hidden"
+                  <span
+                    className="font-heading font-bold text-[#101820] group-hover:text-[#006b5b] text-[17px] lg:text-[19px] leading-[1.3] transition-colors duration-200 select-none"
                   >
-                    <p
-                      className="font-body pb-6"
-                      style={{ color: 'var(--gray-400)', fontSize: '16px', lineHeight: 1.7 }}
-                    >
-                      {faq.a}
-                    </p>
+                    {faq.q}
+                  </span>
+                  
+                  {/* Chevron rotating icon — smooth rotation */}
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
+                    className="shrink-0"
+                  >
+                    <ChevronDown
+                      size={20}
+                      strokeWidth={2}
+                      className="text-[#006b5b] select-none"
+                    />
                   </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ))}
-        </div>
+                </button>
+
+                {/* Accordion content with smooth height toggle */}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                      className="overflow-hidden select-none"
+                    >
+                      <p
+                        className="font-body pb-6 text-[16px] lg:text-[17px] leading-[1.7] select-none"
+                        style={{ color: 'rgba(61, 44, 46, 0.82)' }}
+                      >
+                        {faq.a}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            )
+          })}
+        </motion.div>
+
       </div>
     </section>
   )

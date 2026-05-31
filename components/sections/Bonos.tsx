@@ -1,163 +1,249 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { 
+  Sparkles, 
+  PanelsTopLeft, 
+  MessageSquareText, 
+  Zap, 
+  BookOpen, 
+  MailCheck, 
+  Workflow 
+} from 'lucide-react'
 
-gsap.registerPlugin(ScrollTrigger)
-
+// Defining the 7 premium resources
 const bonos = [
   {
-    title: 'Skill de Claude "Recrea Cualquier Video"',
+    id: 1,
+    title: 'BONO #1 — Skill de Claude "Recrea Cualquier Video"',
     desc: 'Pega el link de un Reel viral y mi Skill de Claude te lo adapta a tu marca, tu voz y tu nicho en segundos. Sin copiar — robar como artista, al estilo IA.',
     value: '$97 USD',
+    icon: Sparkles,
+    isFeatured: false,
   },
   {
-    title: 'Skill de Claude "Carrusel Automático"',
+    id: 2,
+    title: 'BONO #2 — Skill de Claude "Carrusel Automático"',
     desc: 'Le das una idea y mi Skill te entrega un carrusel completo de Instagram listo para publicar. Hook, slides, copy, diseño visual. Todo en un clic.',
     value: '$147 USD',
+    icon: PanelsTopLeft,
+    isFeatured: false,
   },
   {
-    title: 'GPT "Guiones de Reels que Venden"',
+    id: 3,
+    title: 'BONO #3 — GPT "Guiones de Reels que Venden"',
     desc: 'GPT personalizado para escribir guiones de Reels con hooks + estructura + timestamps. Le das el tema, te entrega el guion completo.',
     value: '$97 USD',
+    icon: MessageSquareText,
+    isFeatured: false,
   },
   {
-    title: 'GPT "Hooks UGC Probados"',
+    id: 4,
+    title: 'BONO #4 — GPT "Hooks UGC Probados"',
     desc: 'GPT entrenado con +100 hooks UGC que ya funcionaron. Pega el producto o tema, recibe el hook listo para grabar.',
     value: '$67 USD',
+    icon: Zap,
+    isFeatured: false,
   },
   {
-    title: 'Biblioteca de Prompts Virales (PDF + Notion)',
+    id: 5,
+    title: 'BONO #5 — Biblioteca de Prompts Virales (PDF + Notion)',
     desc: 'La biblioteca completa con los prompts exactos que uso para crear hooks, guiones, conceptos virales y carruseles. Organizada por categoría, lista para copiar y pegar.',
     value: '$97 USD',
+    icon: BookOpen,
+    isFeatured: false,
   },
   {
-    title: 'Lista Marcas que Pagan + Scripts de Outreach (PDF + Notion)',
+    id: 6,
+    title: 'BONO #6 — Lista Marcas que Pagan + Scripts de Outreach (PDF + Notion)',
     desc: 'La base de datos secreta con las marcas que YA están pagando creadores que usan IA — con sus emails, briefs reales, tarifas de referencia + los scripts de outreach exactos que funcionan para cerrar tu primera colaboración.',
     value: '$197 USD',
+    icon: MailCheck,
+    isFeatured: true,
   },
   {
-    title: 'Workflows Probados (PDF + Notion)',
+    id: 7,
+    title: 'BONO #7 — Workflows Probados (PDF + Notion)',
     desc: 'Los flujos de trabajo paso a paso que uso para producir 30 piezas de contenido en una tarde. Plug & play. Solo sigues el orden y produces.',
     value: '$97 USD',
+    icon: Workflow,
+    isFeatured: false,
   },
 ]
 
 export default function Bonos() {
-  const sectionRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.bono-card',
-        { opacity: 0, y: 24 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.5,
-          stagger: 0.08,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '.bonos-grid',
-            start: 'top 80%',
-          },
-        }
-      )
-    }, sectionRef)
-    return () => ctx.revert()
-  }, [])
+  const power3Out: [number, number, number, number] = [0.22, 1, 0.36, 1]
+  const power2Out: [number, number, number, number] = [0.25, 1, 0.5, 1]
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.08 }
+    }
+  }
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 28, scale: 0.97 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1,
+      transition: { duration: 0.55, ease: power2Out }
+    }
+  }
 
   return (
-    <section ref={sectionRef} className="py-20 lg:py-28" style={{ background: 'var(--navy-800)' }}>
-      <div className="container-base max-w-[1200px]">
+    <section 
+      id="bonos" 
+      className="py-20 lg:py-24 w-full relative overflow-hidden flex items-center justify-center select-none" 
+      style={{ backgroundColor: '#101820' }}
+    >
+      {/* Subtle dot grid */}
+      <div className="absolute inset-0 pointer-events-none dot-pattern-dark" />
+
+      <div className="container-base max-w-[1200px] w-full text-center relative z-10 px-5 lg:px-8">
+        
+        {/* H2 Title */}
         <motion.h2
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="font-heading font-bold text-white text-center mb-4 glitch-hover"
-          style={{ fontSize: 'clamp(28px, 4vw, 40px)', lineHeight: 1.2 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.65, delay: 0.05, ease: power3Out }}
+          className="font-heading font-extrabold text-white text-center mb-4 text-[28px] lg:text-[40px] leading-[1.12] lg:leading-[1.15] tracking-[-0.01em] max-w-[900px] mx-auto select-none"
         >
           ADEMÁS DEL CURSO, HOY TE LLEVAS 7 BONOS QUE ACELERAN TU RESULTADO 🎁
         </motion.h2>
 
+        {/* Subhead */}
         <motion.p
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          viewport={{ once: true }}
-          className="font-body text-center mx-auto mb-16 max-w-[700px]"
-          style={{ color: 'var(--gray-400)', fontSize: 'clamp(16px, 2vw, 18px)', lineHeight: 1.6 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.55, delay: 0.08, ease: power2Out }}
+          className="font-body font-normal text-[#a89f94] text-center mb-16 max-w-[700px] mx-auto text-[16px] lg:text-[18px] leading-[1.6]"
         >
           Skills, GPTs y recursos que yo mismo uso. Listos para que arranques desde el día 1 sin construir nada desde cero.
         </motion.p>
 
-        <div className="bonos-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {bonos.map((bono, i) => (
-            <div
-              key={i}
-              className={`bono-card card-hover relative rounded-2xl p-6 lg:p-8 flex flex-col ${
-                i === 6 ? 'md:col-span-2 lg:col-span-1 lg:col-start-2 max-w-md md:max-w-xl lg:max-w-none mx-auto lg:mx-0 w-full' : ''
-              }`}
-              style={{
-                background: 'var(--navy-900)',
-                border: '1px solid rgba(255,255,255,0.05)',
-                transition: 'border-color 300ms, box-shadow 300ms',
-              }}
-            >
-              {/* Badge BONO */}
-              <span
-                className="absolute top-4 right-4 font-body font-bold uppercase rounded-md px-2 py-1"
-                style={{ background: 'var(--orange-500)', color: '#FFFFFF', fontSize: '11px', letterSpacing: '0.04em' }}
+        {/* Bento Grid layout — stagger */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 mb-16"
+        >
+          {bonos.map((bono) => {
+            const IconComponent = bono.icon
+            
+            return (
+              <motion.div
+                key={bono.id}
+                variants={cardVariants}
+                className={`bg-white rounded-[28px] p-6 lg:p-[28px] flex flex-col text-left relative overflow-hidden transition-all duration-300 ease-out group select-none ${
+                  bono.isFeatured 
+                    ? 'border-[1.5px] border-[#006b5b]/55 hover:border-[#006b5b] shadow-[0_8px_30px_rgba(0,107,91,0.04)] hover:shadow-[0_24px_60px_rgba(0,107,91,0.12)]' 
+                    : 'border border-[#a89f94]/28 hover:border-[#006b5b]/45 shadow-[0_8px_30px_rgba(16,24,32,0.015)] hover:shadow-[0_24px_60px_rgba(16,24,32,0.08)]'
+                } hover:-translate-y-1 lg:hover:-translate-y-[5px] ${
+                  bono.id === 7 
+                    ? 'md:col-span-2 lg:col-span-8 lg:col-start-3 max-w-full lg:max-w-[760px] lg:mx-auto w-full' 
+                    : 'lg:col-span-4'
+                }`}
+                style={{ minHeight: bono.isFeatured ? '380px' : '340px' }}
               >
-                BONO
-              </span>
+                {/* Badges Container */}
+                <div className="absolute top-5 right-5 flex items-center gap-2 select-none z-10">
+                  {bono.isFeatured && (
+                    <span
+                      className="font-body font-bold text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-full border leading-none"
+                      style={{
+                        background: 'rgba(255,205,0,0.22)',
+                        color: '#101820',
+                        borderColor: 'rgba(255,205,0,0.45)',
+                      }}
+                    >
+                      MÁS VALIOSO
+                    </span>
+                  )}
+                  <span
+                    className="font-body font-bold text-[11px] tracking-[0.08em] uppercase px-2.5 py-1 rounded-full border leading-none"
+                    style={{
+                      background: 'rgba(0,107,91,0.10)',
+                      color: '#006b5b',
+                      borderColor: 'rgba(0,107,91,0.24)',
+                    }}
+                  >
+                    BONO
+                  </span>
+                </div>
 
-              <div className="text-5xl mb-4" style={{ lineHeight: 1 }}>🎁</div>
+                {/* Icon slot */}
+                <div className="w-16 h-16 rounded-[20px] bg-[#006b5b]/8 border border-[#006b5b]/18 flex items-center justify-center mb-6 group-hover:-translate-y-0.5 transition-transform duration-300 ease-out shrink-0">
+                  <IconComponent 
+                    size={28} 
+                    strokeWidth={1.75} 
+                    className="text-[#006b5b]" 
+                  />
+                </div>
 
-              <h3
-                className="font-heading font-bold text-white mb-2 pr-12"
-                style={{ fontSize: '18px', lineHeight: 1.3 }}
-              >
-                {bono.title}
-              </h3>
+                {/* Title */}
+                <h3 className="font-heading font-bold text-[#101820] text-[21px] lg:text-[22px] leading-[1.15] mb-4 pr-24 lg:pr-28 select-none">
+                  {bono.title}
+                </h3>
 
-              <p
-                className="font-body flex-1 mb-4"
-                style={{ color: 'var(--gray-400)', fontSize: '14px', lineHeight: 1.6 }}
-              >
-                {bono.desc}
-              </p>
-
-              {/* Footer valor */}
-              <div
-                className="pt-4"
-                style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}
-              >
-                <p
-                  className="font-body font-semibold"
-                  style={{ color: 'var(--orange-500)', fontSize: '14px' }}
+                {/* Description */}
+                <p 
+                  className="font-body font-normal text-[15px] leading-[1.6] mb-auto select-none"
+                  style={{ color: 'rgba(61, 44, 46, 0.84)' }}
                 >
-                  Valor real: {bono.value}
+                  {bono.desc}
                 </p>
-              </div>
-            </div>
-          ))}
+
+                {/* Divider & Footer Valor */}
+                <div className="mt-6 pt-5 border-t border-[#a89f94]/22 flex items-center justify-between select-none">
+                  <span className="font-body font-bold text-[14px] text-[#006b5b] tracking-wide">
+                    Valor real: <span className="text-[#101820] font-extrabold">{bono.value}</span>
+                  </span>
+                </div>
+              </motion.div>
+            )
+          })}
+        </motion.div>
+
+        {/* Cierre Destacado */}
+        <div className="flex flex-col items-center justify-center mt-16 max-w-[760px] mx-auto relative select-none">
+          
+          {/* Bootzy accent */}
+          <motion.div
+            initial={{ opacity: 0, y: 10, rotate: -3 }}
+            whileInView={{ opacity: 1, y: 0, rotate: -3 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1, ease: power3Out }}
+            className="mb-3 select-none"
+          >
+            <span className="font-accent text-[#ffcd00] text-[20px] lg:text-[24px] tracking-wide inline-block leading-none select-none">
+              ¡incluidos hoy!
+            </span>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 22, scale: 0.97 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.65, delay: 0.15, ease: power3Out }}
+            className="w-full rounded-[24px] border select-none p-6 lg:p-[28px_36px] bg-[#ffcd00]/10 border-[#ffcd00]/35 shadow-[0_8px_32px_rgba(255,205,0,0.02)]"
+          >
+            <h4 className="font-heading font-bold text-[#ffcd00] text-[22px] lg:text-[28px] leading-[1.25] text-center select-none">
+              Valor real de los bonos:{' '}
+              <span className="text-white font-extrabold text-[24px] lg:text-[32px] mx-1 drop-shadow-[0_2px_8px_rgba(255,255,255,0.1)]">
+                $799 USD
+              </span>{' '}
+              — Incluidos sin costo extra.
+            </h4>
+          </motion.div>
         </div>
 
-        {/* Cierre */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="font-heading font-bold text-center mt-16"
-          style={{ color: 'var(--yellow-500)', fontSize: 'clamp(22px, 3vw, 28px)', lineHeight: 1.3 }}
-        >
-          Valor real de los bonos: $799 USD — Incluidos sin costo extra.
-        </motion.p>
       </div>
     </section>
   )
